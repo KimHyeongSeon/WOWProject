@@ -2,12 +2,12 @@
 #define DATA 4
 int main()
 {
-    int num[]={3,2,4,1};//초기값
+    int arrNum[]={3,2,4,1};//초기값 초기화
     int i, j , temp;
     
     printf("초기 값 : ");
     for(i=0;i<DATA;i++)
-        printf("%d ",num[i]);
+        printf("%d ",arrNum[i]);
         printf("\n");
       
     
@@ -15,18 +15,18 @@ int main()
     {
         for(j=0;j<DATA-1;j++)
         {
-            if(num[j] > num[j+1])
+            if(arrNum[j] > arrNum[j+1])
             {
-                temp=num[j];//뒷자리의 수가 더 크면 교체
-                num[j]=num[j+1];
-                num[j+1]=temp;
+                temp=arrNum[j];//뒷자리의 수가 더 크면 교체
+                arrNum[j]=arrNum[j+1];
+                arrNum[j+1]=temp;
             }
         }
     }
  
     printf("정렬 후 : ");
     for(i=0;i<DATA;i++)
-        printf("%d ",num[i]);
+        printf("%d ",arrNum[i]);
         printf("\n");
     
 }
