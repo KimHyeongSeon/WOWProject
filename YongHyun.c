@@ -2,8 +2,8 @@
  
 #define SWAP(a,b)  {int t; t = a; a=b; b=t;}//a와 b를 교환
  
- 
 void SequenceSort(int *base, int n);
+
 int main(void)
 {
     int arr[10] = { 9,4,3,10,5,8,7,6,2,1 };
