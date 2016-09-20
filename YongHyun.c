@@ -1,6 +1,12 @@
 #include <stdio.h>
  
-#define SWAP(a,b)  {int t; t = a; a=b; b=t;}//a와 b를 교환
+#define SWAP(a,b)  
+{
+  int t;
+  t = a;
+  a = b;
+  b = t;
+}//a와 b를 교환
  
 void SequenceSort(int *base, int n);
 
