@@ -7,8 +7,10 @@ int main()
     
     printf("초기 값 : ");
     for(i=0;i<DATA;i++)
+    {
         printf("%d ",arrNum[i]);
         printf("\n");
+    }
       
     
     for(i=0;i<DATA-1;i++)//비교횟수는 데이터갯수-1, 자기 자신과는 비교 하지 않음
@@ -26,7 +28,8 @@ int main()
  
     printf("정렬 후 : ");
     for(i=0;i<DATA;i++)
+    {
         printf("%d ",arrNum[i]);
         printf("\n");
-    
+    }
 }
