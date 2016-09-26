@@ -5,17 +5,22 @@ Enter file contents here
  void print_array(int *array, int size) 
  { 
      for (int i = 0; i < size; i++) 
+     {
          printf("%d ", array[i]); 
+     }
      printf("\n"); 
  }  
  
  void swap(int *array, int i, int j) 
  { 
+     int temp
+     
      if (!array) 
+     {
          return; 
- 
- 
-     int temp = array[i]; 
+     }
+     
+     temp = array[i]; 
      array[i] = array[j]; 
      array[j] = temp; 
  }  
@@ -43,7 +48,10 @@ Enter file contents here
  
  
      for (int i = 0; i < size; i++) 
+     {
          scanf("%d", &array[i]); 
+     }
     insertion_sort(array, size); 
+    
     return EXIT_SUCCESS; 
  }
