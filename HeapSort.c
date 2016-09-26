@@ -7,8 +7,9 @@
 #define SWAP(a,b)  {int t; t = a; a=b; b=t;}//a와 b를 교환
  
  
-void HeapSort(int *base, int n);
-void ViewArr(int *arr, int n);
+void HeapSort(int *base, int n); //LINE25
+void ViewArr(int *arr, int n);   //LINE110
+
 int main(void)
 {
     int arr[10] = { 9,4,3,10,5,8,7,6,2,1 };
@@ -18,8 +19,9 @@ int main(void)
     return 0;
 }
  
-void InitHeap(int *base, int n);
-void MakeHeap(int *base, int n);
+void InitHeap(int *base, int n);  //LINE44
+void MakeHeap(int *base, int n);  //LINE72
+
 void HeapSort(int *base, int n)
 {
     int on = n;
@@ -65,7 +67,8 @@ void InitHeap(int *base, int n)
 }
  
  
-int FindMaxIndex(int *base, int n, int now);
+int FindMaxIndex(int *base, int n, int now);  //LINE90
+
 void MakeHeap(int *base, int n)
 {
     int now = 0;
@@ -103,6 +106,7 @@ int FindMaxIndex(int *base, int n, int now)
     }
     return lc;
 }
+
 void ViewArr(int *arr, int n)
 {
     int i = 0;
