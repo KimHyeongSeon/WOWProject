@@ -6,7 +6,7 @@
    
      for( i = 0;i<len-1;++i) 
      { 
-        for(j = i+1;j<len;++j)//或者 j = 0;j<len-i-1;++j 
+        for(j = i+1;j<len;++j)//或者 j = 0;j<len-i-1;++j //주석 설명좀
         { 
             if(a[j] >a[j+1]) 
             { 
