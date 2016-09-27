@@ -27,7 +27,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		    printf("정수 입력 %d: ", i+1);
 		    scanf("%d", &arr[i]);
 	  }
-
+ 
 	  MaxAndMin(arr, sizeof(arr)/sizeof(int), &maxPtr, &minPtr);
 	  printf("최대 : %d, 최소 : %d \n", *maxPtr, minPtr);
 
