@@ -36,9 +36,8 @@ Enter file contents here
              swap(array, cur - 1, cur); 
          } 
          print_array(array, size); 
-    } 
+     } 
  } 
- 
  
  int main(void) 
  { 
@@ -51,7 +50,7 @@ Enter file contents here
      {
          scanf("%d", &array[i]); 
      }
-    insertion_sort(array, size); 
+  insertion_sort(array, size); 
     
     return EXIT_SUCCESS; 
  }
