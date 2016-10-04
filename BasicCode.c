@@ -3,9 +3,10 @@
 
 int main()
 {
-  printf("Hello world"\n);
+  printf("Hello world\n");
+  
+  
   
   system("pause");
-  return 0;
-  
-  }
+  return 0;  
+ }
