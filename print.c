@@ -2,8 +2,10 @@
 #include "stdlib.h"
 
 int main(void)
+{
+   printf("hello ");
 
-printf("hello ");
+  system("pause");
+  return 0;
+}
 
-system("pause");
-return 0;
