@@ -70,10 +70,11 @@ int main()
 	printf("XXXXX  XX  XX   XX     XX   XXXXXX XXXXXX XXXXX  XX  XX XX XX\n");
 	printf("\n\n\n\n");
 	textcolor(WHITE, BLACK);
-	printf("1. 싱글 플레이 \n2. 멀티 플레이\n");
+
+	printf("1. 싱글 플레이 \n2. 멀티 플레이\n3. 정보\n");
 	printf("입력 : ");
 	scanf("%d", &multiPlayCheck); // 싱글플레이, 멀티플레이 선택 
-	
+
 	if (multiPlayCheck == SINGLE_PLAY) {  // 싱글플레이일경우
 		int turn_count = 1;
 		//player
@@ -117,39 +118,72 @@ int main()
 			system("pause");
 		}
 	}
-	else if (multiPlayCheck == MULTI_PLAY)
+	else if (multiPlayCheck == MULTI_PLAY) // 멀티플레이일경우
 	{
+		int eventFlag = 0;
+
 		sio::client h;
 		h.connect(SERVER_ADDRESS);
-		int flag;
-	
-		Sleep(250);
 
-		h.socket()->on("GetRoomList" + h.get_sessionid(), [&](sio::event& ev)
-		{
-			cout << ev.get_messages()[0]->get_string();
-		});
-		
-		while (true)
-		{
-			printf("1. 방목록 가져오기\n2. 방 생성하기");
-			scanf("%d", &flag);
 
-			if (flag == 1) {
-				
-				h.socket()->emit("GetRoomList");
-			}
-			else
+		Sleep(250); // TODO 이부분 접속시 이벤트 발생처리로 변경해야함. https://github.com/socketio/socket.io-client-cpp/blob/master/API.md
+
+		h.socket()->on("GetRoomList" + h.get_sessionid(), [&](sio::event& ev)  // 방목록 가져오기 콜백 이벤트
+		{
+
+			cout << ev.get_messages()[0]->get_string(); // 방명단 출력
+
+			string roomIndex;
+			cout << "\n 접속하실 방의 번호를 입력해주세요.";
+			getline(cin, roomIndex);
+
+			h.socket()->on("JoinRoom" + h.get_sessionid(), [&](sio::event& ev)  // 방목록 가져오기 콜백 이벤트
 			{
-				string roomName;
-				printf("생성할 방의 이름을 입력하시오.\n");
-				printf("입력 : ");
-				getline(cin, roomName);
-				std::getline(cin, roomName);
-				h.socket()->emit("CreateRoom", roomName);
-			}
+				cout << "\n 게임을 시작합니다.";
+
+			});
+			h.socket()->emit("JoinRoom", roomIndex);
+
+		});
+
+
+		int flag;
+
+
+		printf("1. 방목록 가져오기 및 접속\n2. 방 생성하기\n");
+		printf("입력 : ");
+		scanf("%d", &flag);
+
+		if (flag == 1) {
+			h.socket()->emit("GetRoomList");
 		}
+		else if (flag == 2)
+		{
+			string roomName; // 문자열 방이름
+			printf("생성할 방의 이름을 입력하시오.\n");
+			printf("입력 : ");
+			getline(cin, roomName);
+			std::getline(cin, roomName);
+
+			h.socket()->on("JoinRoom" + h.get_sessionid(), [&](sio::event& ev)  // 방목록 가져오기 콜백 이벤트
+			{
+				cout << "\n 상대방이 접속하여 게임을 시작합니다.";
+
+			});
+
+			h.socket()->emit("CreateRoom", roomName); // 서버에 통신.
+
+			cout << "상대방이 접속할때까지 기다리십시오.";
+		}
+
+		while (eventFlag == 0)
+		{
+
+		}
+
 		
+
+
 	}
 	return 0;
 }
