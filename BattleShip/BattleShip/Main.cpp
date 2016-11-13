@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <iostream>
 #include <windows.h> 
 #include "sio_client.h"
 
 #define SINGLE_PLAY 1
 #define MULTI_PLAY 2
-#define SERVER_ADDRESS "http://127.0.0.1:80"
+#define SERVER_ADDRESS "http://192.168.0.7:3000"
 #define BLACK 0 
 #define BLUE 1 
 #define GREEN 2 
@@ -27,6 +28,24 @@
 using namespace sio;
 using namespace std;
 
+<<<<<<< HEAD
+//ÇÔ¼ö
+void initial();//»ç¿ëÀÚ º¸µå ÃÊ±âÄ¡ ¼³Á¤
+void cp_initial();//ÄÄÇ»ÅÍÀÇ º¸µå ÃÊ±âÄ¡ ¼³Á¤
+void position();//»ç¿ëÀÚÀÇ ¹è À§Ä¡ ¿ÀÁ÷ ¼öÆòÀ¸·Î ±×¸®°í ¼öÁ÷À¸·Î
+void cp_position();//65=Ç×°ø¸ğÇÔ(aircraft carrier), 66=ÀüÇÔ(battleship), 68=±¸ÃàÇÔ(destroyer), 83=Àá¼öÇÔ(submarine), 80=ÃÊ°èÁ¤(patrol boat)
+
+void multi_play();//¹æ¿¡ Âü°¡µÇ¾î ¸ÖÆ¼ÇÃ·¹ÀÌ °ÔÀÓ ½ÃÀÛ 
+void print_board();//»ç¿ëÀÚÀÇ º¸µå Ãâ·Â
+void cp_print_board();//ÄÄÇ»ÅÍÀÇ º¸µå Ãâ·Â
+void attack();//»ç¿ëÀÚÀÇ °ø°İ
+void cp_attack();//ÄÄÇ»ÅÍÀÇ °ø°İ. 120=hit, 46=miss
+int attack_check(int row, int column);//È®ÀÎÇÑ´Ù ÁöÁ¡À» °ø°İÇÏ¿´À»°æ¿ì, ³õÄ£°æ¿ì ¶Ç´Â ÄÄÇ»ÅÍÀÇ »õ·Î¿î ÁöÁ¡  checks if the point is attacked, missed or new from the pc's board (»õ·Î¿îÁöÁ¡Àº ¹¹ÁÒ?)
+int cp_attack_check(int row, int column);//È®ÀÎÇÑ´Ù ÁöÁ¡À» °ø°İÇÏ¿´À»°æ¿ì, ³õÄ£°æ¿ì ¶Ç´Â »ç¿ëÀÚÀÇ »õ·Î¿î º¸µå??checks if the point is attacked, missed or new from the player's board
+int rand_num(int high); //ÆÄ¶ó¹ÌÅÍ°ªº¸´Ù ³·Àº ·£´ıÇÔ¼ö
+int victory_check();//»ç¿ëÀÚ°¡ ÀÌ°å´ÂÁö È®ÀÎ
+int cp_victory_check();//ÄÄÇ»ÅÍ°¡ ÀÌ°å´ÂÁö È®ÀÎ
+=======
 //í•¨ìˆ˜
 void initial();//ì‚¬ìš©ì ë³´ë“œ ì´ˆê¸°ì¹˜ ì„¤ì •
 void cp_initial();//ì»´í“¨í„°ì˜ ë³´ë“œ ì´ˆê¸°ì¹˜ ì„¤ì •
@@ -42,6 +61,7 @@ int cp_attack_check(int row, int column);//í™•ì¸í•œë‹¤ ì§€ì ì„ ê³µê²©í•˜ì˜€ì
 int rand_num(int high); //íŒŒë¼ë¯¸í„°ê°’ë³´ë‹¤ ë‚®ì€ ëœë¤í•¨ìˆ˜
 int victory_check();//ì‚¬ìš©ìê°€ ì´ê²¼ëŠ”ì§€ í™•ì¸
 int cp_victory_check();//ì»´í“¨í„°ê°€ ì´ê²¼ëŠ”ì§€ í™•ì¸
+>>>>>>> refs/remotes/KimHyeongSeon/master
 void ship_coordinates();//goes through the board and records the player's ship coordinates
 int distance_check(int a, int b, int num);//í™•ì¸í•œë‹¤ ë³´íŠ¸ì˜ ìœ„ì¹˜ê°€ ìœ íš¨í•œì§€ ë§ìœ¼ë©´ 1, ì•„ë‹ˆë©´ 0 
 void textcolor(int foreground, int background); //í…ìŠ¤íŠ¸ ì»¬ëŸ¬ ë³€ê²½ í•¨ìˆ˜
@@ -57,6 +77,8 @@ int HIT = 0, row, column;
 char SHIP;
 char state[6];//ì»´í“¨í„°ê°€ ê³µê²©í•˜ê±°ë‚˜ ë†“ì¹ Â‹Âš ë§í•œë‹¤.
 int multiPlayCheck;
+string roomIndex;// ¸ÖÆ¼ÇÃ·¹ÀÌ Á¢¼ÓÇÑ ¹æÀÇ ÀÎµ¦½º
+sio::client h; // ¸ÖÆ¼ÇÃ·¹ÀÌ¿¡ ¾²ÀÌ´Â socket.io Å¬¶óÀÌ¾ğÆ®.
 
 int main()
 {
@@ -69,10 +91,19 @@ int main()
 	printf("XXXXX  XX  XX   XX     XX   XXXXXX XXXXXX XXXXX  XX  XX XX XX\n");
 	printf("\n\n\n\n");
 	textcolor(WHITE, BLACK);
+<<<<<<< HEAD
+
+	printf("1. ½Ì±Û ÇÃ·¹ÀÌ \n2. ¸ÖÆ¼ ÇÃ·¹ÀÌ\n3. Á¤º¸\n");
+	printf("ÀÔ·Â : ");
+	scanf("%d", &multiPlayCheck); // ½Ì±ÛÇÃ·¹ÀÌ, ¸ÖÆ¼ÇÃ·¹ÀÌ ¼±ÅÃ 
+
+	if (multiPlayCheck == SINGLE_PLAY) {  // ½Ì±ÛÇÃ·¹ÀÌÀÏ°æ¿ì
+=======
 	printf("1. ì‹±ê¸€ í”Œë ˆì´ \n2. ë©€í‹° í”Œë ˆì´");
 	scanf("%d", &multiPlayCheck); // ì‹±ê¸€í”Œë ˆì´, ë©€í‹°í”Œë ˆì´ ì„ íƒ 
 	
 	if (multiPlayCheck == SINGLE_PLAY) {  // ì‹±ê¸€í”Œë ˆì´ì¼ê²½ìš°
+>>>>>>> refs/remotes/KimHyeongSeon/master
 		int turn_count = 1;
 		//player
 		initial();
@@ -115,29 +146,90 @@ int main()
 			system("pause");
 		}
 	}
-	else if (multiPlayCheck == MULTI_PLAY)
+	else if (multiPlayCheck == MULTI_PLAY) // ¸ÖÆ¼ÇÃ·¹ÀÌÀÏ°æ¿ì
 	{
-		sio::client h;
-		
+		int eventFlag = 0;
+
 		h.connect(SERVER_ADDRESS);
+
+
+		Sleep(250); // TODO ÀÌºÎºĞ Á¢¼Ó½Ã ÀÌº¥Æ® ¹ß»ıÃ³¸®·Î º¯°æÇØ¾ßÇÔ. https://github.com/socketio/socket.io-client-cpp/blob/master/API.md
+
+		h.socket()->on("GetRoomListRes", [&](sio::event& ev)  // ¹æ¸ñ·Ï °¡Á®¿À±â Äİ¹é ÀÌº¥Æ®
+		{
+
+			cout << ev.get_messages()[0]->get_string(); // ¹æ¸í´Ü Ãâ·Â
+
+			cout << "\n Á¢¼ÓÇÏ½Ç ¹æÀÇ ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.";
+			getline(cin, roomIndex);
+			std::getline(cin, roomIndex);
+
+			h.socket()->on("JoinRoom" + h.get_sessionid(), [&](sio::event& ev)  // ¹æ¸ñ·Ï °¡Á®¿À±â Äİ¹é ÀÌº¥Æ®
+			{
+				cout << "\n °ÔÀÓÀ» ½ÃÀÛÇÕ´Ï´Ù.";
+				multi_play();
+			});
+
+			h.socket()->emit("JoinRoom", roomIndex);
+
+		});
+
 		int flag;
+<<<<<<< HEAD
+
+		printf("1. ¹æ¸ñ·Ï °¡Á®¿À±â ¹× Á¢¼Ó\n2. ¹æ »ı¼ºÇÏ±â\n");
+		printf("ÀÔ·Â : ");
+=======
 		printf("1. ë°©ëª©ë¡ ê°€ì ¸ì˜¤ê¸°\n2. ë°© ìƒì„±í•˜ê¸°");
+>>>>>>> refs/remotes/KimHyeongSeon/master
 		scanf("%d", &flag);
 
 		if (flag == 1) {
-	
-				h.socket()->emit("GetRoomList");
+			h.socket()->emit("GetRoomList");
 		}
-		else
+		else if (flag == 2)
 		{
-				h.socket()->emit("CreateRoom");
+			string roomName; // ¹®ÀÚ¿­ ¹æÀÌ¸§
+			printf("»ı¼ºÇÒ ¹æÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ½Ã¿À.\n");
+			printf("ÀÔ·Â : ");
+			getline(cin, roomName);
+			std::getline(cin, roomName);
+
+			h.socket()->on("JoinRoom" + h.get_sessionid(), [&](sio::event& ev)
+			{
+				roomIndex = ev.get_messages()[0]->get_string();
+				cout << "\n »ó´ë¹æÀÌ Á¢¼ÓÇÏ¿© °ÔÀÓÀ» ½ÃÀÛÇÕ´Ï´Ù.";
+				multi_play();
+			});
+
+			h.socket()->emit("CreateRoom", roomName); // ¼­¹ö¿¡ Åë½Å.
+			
+			cout << "»ó´ë¹æÀÌ Á¢¼ÓÇÒ¶§±îÁö ±â´Ù¸®½Ê½Ã¿À.";
 		}
+
+		while (true) {
+			Sleep(200); // ¸®¼Ò½º ºÎÇÏ ¹æÁö
+		}
+		
 	}
 	return 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+void multi_play()
+{
+	initial();
+	cp_initial();
+	position();
+	
+	//TODO h.socket()->on("°ø°İ¹×´ë±âÀÌº¥Æ®"); Ãß°¡ ÇØ¾ßÇÔ
+	h.socket()->emit("SetPositionDone", roomIndex);
+	cout << "»ó´ë¹æÀÇ ÀüÇÔ¹èÄ¡¸¦ ±â´Ù·ÁÁÖ¼¼¿ä.";
+
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 int victory_check()
 {
@@ -420,7 +512,11 @@ void position()
 
 	////////////////////////////Battleship 66 ì „í•¨
 	system("cls");
+<<<<<<< HEAD
+	printf("¡Ú¡Ú¡Ú¡Ú¡Ú¡ÚÇÔ´ë ¹èÄ¡Áß¡Ú¡Ú¡Ú¡Ú¡Ú¡Ú\n\n");
+=======
 	printf("â˜…â˜…â˜…â˜…â˜…â˜…í•¨ëŒ€ ë°°ì¹˜ì¤‘â˜…â˜…â˜…â˜…â˜…â˜…\n\n");
+>>>>>>> refs/remotes/KimHyeongSeon/master
 	print_board();
 	do
 	{
