@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <iostream>
 #include <windows.h> 
 #include "sio_client.h"
 
 #define SINGLE_PLAY 1
 #define MULTI_PLAY 2
-#define SERVER_ADDRESS "http://127.0.0.1:3000"
+#define SERVER_ADDRESS "http://127.0.0.1:80"
 #define BLACK 0 
 #define BLUE 1 
 #define GREEN 2 
@@ -70,8 +69,7 @@ int main()
 	printf("XXXXX  XX  XX   XX     XX   XXXXXX XXXXXX XXXXX  XX  XX XX XX\n");
 	printf("\n\n\n\n");
 	textcolor(WHITE, BLACK);
-	printf("1. 싱글 플레이 \n2. 멀티 플레이\n");
-	printf("입력 : ");
+	printf("1. 싱글 플레이 \n2. 멀티 플레이");
 	scanf("%d", &multiPlayCheck); // 싱글플레이, 멀티플레이 선택 
 	
 	if (multiPlayCheck == SINGLE_PLAY) {  // 싱글플레이일경우
@@ -120,25 +118,19 @@ int main()
 	else if (multiPlayCheck == MULTI_PLAY)
 	{
 		sio::client h;
+		
 		h.connect(SERVER_ADDRESS);
 		int flag;
-	
-		printf("1. 방목록 가져오기\n2. 방 생성하기\n");
-		printf("입력 : ");
+		printf("1. 방목록 가져오기\n2. 방 생성하기");
 		scanf("%d", &flag);
 
-		if (flag == 1) 
-		{
+		if (flag == 1) {
+	
 				h.socket()->emit("GetRoomList");
 		}
 		else
 		{
-			string roomName;
-			printf("생성할 방의 이름을 입력하시오.\n");
-			printf("입력 : ");
-			getline(cin, roomName);
-			std::getline(cin, roomName);
-			h.socket()->emit("CreateRoom",roomName);
+				h.socket()->emit("CreateRoom");
 		}
 	}
 	return 0;
@@ -428,7 +420,7 @@ void position()
 
 	////////////////////////////Battleship 66 전함
 	system("cls");
-	printf("★★★★★★함대 배치중★★★★★★\n\n");
+	printf("★★★★★★함대 배치중★★★★★\n\n");
 	print_board();
 	do
 	{
