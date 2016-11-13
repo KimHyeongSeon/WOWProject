@@ -7,7 +7,7 @@
 
 #define SINGLE_PLAY 1
 #define MULTI_PLAY 2
-#define SERVER_ADDRESS "http://127.0.0.1:3000"
+#define SERVER_ADDRESS "http://192.168.0.7:3000"
 #define BLACK 0 
 #define BLUE 1 
 #define GREEN 2 
@@ -34,6 +34,7 @@ void cp_initial();//컴퓨터의 보드 초기치 설정
 void position();//사용자의 배 위치 오직 수평으로 그리고 수직으로
 void cp_position();//65=항공모함(aircraft carrier), 66=전함(battleship), 68=구축함(destroyer), 83=잠수함(submarine), 80=초계정(patrol boat)
 
+void multi_play();//방에 참가되어 멀티플레이 게임 시작 
 void print_board();//사용자의 보드 출력
 void cp_print_board();//컴퓨터의 보드 출력
 void attack();//사용자의 공격
@@ -58,6 +59,8 @@ int HIT = 0, row, column;
 char SHIP;
 char state[6];//컴퓨터가 공격하거나 놓칠떄 말한다.
 int multiPlayCheck;
+string roomIndex;// 멀티플레이 접속한 방의 인덱스
+sio::client h; // 멀티플레이에 쓰이는 socket.io 클라이언트.
 
 int main()
 {
@@ -122,33 +125,31 @@ int main()
 	{
 		int eventFlag = 0;
 
-		sio::client h;
 		h.connect(SERVER_ADDRESS);
 
 
 		Sleep(250); // TODO 이부분 접속시 이벤트 발생처리로 변경해야함. https://github.com/socketio/socket.io-client-cpp/blob/master/API.md
 
-		h.socket()->on("GetRoomList" + h.get_sessionid(), [&](sio::event& ev)  // 방목록 가져오기 콜백 이벤트
+		h.socket()->on("GetRoomListRes", [&](sio::event& ev)  // 방목록 가져오기 콜백 이벤트
 		{
 
 			cout << ev.get_messages()[0]->get_string(); // 방명단 출력
 
-			string roomIndex;
 			cout << "\n 접속하실 방의 번호를 입력해주세요.";
 			getline(cin, roomIndex);
+			std::getline(cin, roomIndex);
 
 			h.socket()->on("JoinRoom" + h.get_sessionid(), [&](sio::event& ev)  // 방목록 가져오기 콜백 이벤트
 			{
 				cout << "\n 게임을 시작합니다.";
-
+				multi_play();
 			});
+
 			h.socket()->emit("JoinRoom", roomIndex);
 
 		});
 
-
 		int flag;
-
 
 		printf("1. 방목록 가져오기 및 접속\n2. 방 생성하기\n");
 		printf("입력 : ");
@@ -165,22 +166,21 @@ int main()
 			getline(cin, roomName);
 			std::getline(cin, roomName);
 
-			h.socket()->on("JoinRoom" + h.get_sessionid(), [&](sio::event& ev)  // 방목록 가져오기 콜백 이벤트
+			h.socket()->on("JoinRoom" + h.get_sessionid(), [&](sio::event& ev)
 			{
+				roomIndex = ev.get_messages()[0]->get_string();
 				cout << "\n 상대방이 접속하여 게임을 시작합니다.";
-
+				multi_play();
 			});
 
 			h.socket()->emit("CreateRoom", roomName); // 서버에 통신.
-
+			
 			cout << "상대방이 접속할때까지 기다리십시오.";
 		}
 
-		while (eventFlag == 0)
-		{
+		while (true) {
 
 		}
-
 		
 
 
@@ -190,6 +190,22 @@ int main()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+void multi_play()
+{
+	initial();
+	cp_initial();
+	position();
+	
+
+	h.socket()->emit("SetPositionDone", roomIndex);
+	cout << "상대방의 전함배치를 기다려주세요.";
+
+	
+	
+	
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 int victory_check()
 {
