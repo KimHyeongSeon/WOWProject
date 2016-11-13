@@ -1,7 +1,7 @@
 ﻿  Main.cpp
-c:\users\rlawn\desktop\wowproject\battleship\battleship\main.cpp(75): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\rlawn\desktop\wowproject\battleship\battleship\main.cpp(79): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
-c:\users\rlawn\desktop\wowproject\battleship\battleship\main.cpp(136): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\rlawn\desktop\wowproject\battleship\battleship\main.cpp(156): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: 'scanf' 선언을 참조하십시오.
   BattleShip.vcxproj -> C:\Users\rlawn\Desktop\WOWProject\BattleShip\Debug\BattleShip.exe
   BattleShip.vcxproj -> C:\Users\rlawn\Desktop\WOWProject\BattleShip\Debug\BattleShip.pdb (Full PDB)

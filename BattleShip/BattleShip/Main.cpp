@@ -179,11 +179,9 @@ int main()
 		}
 
 		while (true) {
-
+			Sleep(200); // 리소스 부하 방지
 		}
 		
-
-
 	}
 	return 0;
 }
@@ -197,13 +195,10 @@ void multi_play()
 	cp_initial();
 	position();
 	
-
+	//TODO h.socket()->on("공격및대기이벤트"); 추가 해야함
 	h.socket()->emit("SetPositionDone", roomIndex);
 	cout << "상대방의 전함배치를 기다려주세요.";
 
-	
-	
-	
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
