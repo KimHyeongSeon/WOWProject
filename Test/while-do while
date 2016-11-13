@@ -1,0 +1,18 @@
+int main(void)
+{
+    int n;
+    while(1){
+           do{
+                 printf("input n: ");
+                 scanf("%d", &n);
+    
+                 if(n==0) {return 0; }
+           } while (n>9||n<1);
+    
+           for(int i=1;i<=9;i++) {
+                  printf("%d X %d = %d\n", n, i, (n*i));
+           }
+    }
+    
+    return 0;
+}
