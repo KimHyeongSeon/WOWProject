@@ -7,7 +7,7 @@
 
 #define SINGLE_PLAY 1
 #define MULTI_PLAY 2
-#define SERVER_ADDRESS "http://192.168.0.7:3000"
+#define SERVER_ADDRESS "https://mighty-peak-9247.herokuapp.com"
 #define BLACK 0 
 #define BLUE 1 
 #define GREEN 2 
