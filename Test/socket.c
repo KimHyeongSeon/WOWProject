@@ -85,6 +85,7 @@ void SendMsg(char* msg,int len){ //메시지를 모든 클라이언트에게 보
         send(clientSocks[i],msg,len,0);//클라이언트들에게 메시지를 전달한다.
     ReleaseMutex(hMutex);//뮤텍스 중지
 }
+
 void ErrorHandling(char* msg){
     fputs(msg,stderr);
     fputc('\n',stderr);
