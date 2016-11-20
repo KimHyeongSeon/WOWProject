@@ -1,7 +1,18 @@
-var io = require('socket.io').listen(3000);
+var http = require('http');
+var express = require('express');
+var app = express();
+var port = 3000;
+var httpServer = http.createServer(app).listen(port, function (req, res) {
+});
+
+var io = require('socket.io').listen(httpServer);
 
 var roomList = [];
 var userSessionIdList = [];
+
+app.get('/', function (req, res) {
+    res.end('BattleShip Server  RoomCount : ' + roomList.length + ' UserCount : ' + userSessionIdList.length);
+});
 
 io.on('connection', function (socket) {
     userSessionIdList.push(socket.id);
@@ -26,7 +37,7 @@ io.on('connection', function (socket) {
 
     socket.on('JoinRoom', function (data) {
         var room = roomList[data]; // 예외처리 해야함
-        if(room != null) {
+        if (room != null) {
             if (room.progress) {
 
             } else {
@@ -39,23 +50,29 @@ io.on('connection', function (socket) {
     });
 
     socket.on('SetPostionDone', function (data) {
-        var room = roomList[data];
-        if(room != null) {
+        var splitData = data.split('.');
+        var roomIndex = splitData[0];
+        var bordData = splitData[1];
+        console.log(roomIndex);
+        console.log(data);
+        var room = roomList[roomIndex];
+        if (room != null) {
             if (room.progress) {
-               if(room.masterSessionId == socket.id){
-                   room.masterPosCheck = true;
-               }
-               if(room.userSessionId == socket.id){
-                   room.userPosCheck = true;
-               }
-               var posReadyCheck = room.masterPosCheck && room.userPosCheck;
-               if(posReadyCheck){
-                   // 데이터 동기화 시켜야함
-                   sockets.emit()
-               }
+                if (room.masterSessionId == socket.id) {
+                    room.masterPosCheck = true;
+                }
+                if (room.userSessionId == socket.id) {
+                    room.userPosCheck = true;
+                }
+                var posReadyCheck = room.masterPosCheck && room.userPosCheck;
+                if (posReadyCheck) {
+                    console.log("SUC");
+                    io.sockets.emit('SetPostionDone' + room.userSessionId, bordData);
+                    io.sockets.emit('SetPostionDone' + room.masterSessionId, bordData);
+                }
 
             } else {
-
+                //방에 문제가있을경우 예외처리
             }
         }
 
