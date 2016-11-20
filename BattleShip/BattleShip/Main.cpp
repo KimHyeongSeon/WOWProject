@@ -7,7 +7,9 @@
 
 #define SINGLE_PLAY 1
 #define MULTI_PLAY 2
+
 #define SERVER_ADDRESS "https://mighty-peak-9247.herokuapp.com"
+
 #define BLACK 0 
 #define BLUE 1 
 #define GREEN 2 
@@ -127,7 +129,6 @@ int main()
 
 		h.connect(SERVER_ADDRESS);
 
-
 		Sleep(250); // TODO 이부분 접속시 이벤트 발생처리로 변경해야함. https://github.com/socketio/socket.io-client-cpp/blob/master/API.md
 
 		h.socket()->on("GetRoomListRes", [&](sio::event& ev)  // 방목록 가져오기 콜백 이벤트
@@ -148,6 +149,8 @@ int main()
 			h.socket()->emit("JoinRoom", roomIndex);
 
 		});
+
+		
 
 		int flag;
 
@@ -194,11 +197,33 @@ void multi_play()
 	initial();
 	cp_initial();
 	position();
-	
-	//TODO h.socket()->on("공격및대기이벤트"); 추가 해야함
-	h.socket()->emit("SetPositionDone", roomIndex);
-	cout << "상대방의 전함배치를 기다려주세요.";
 
+	string msg = roomIndex + ".";   // 0번째 방번호 스플릿 나머지는 bord
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
+			msg += board[i][j];
+		}
+	}
+	h.socket()->on("SetPositionDone" + h.get_sessionid(), [&](sio::event& ev)
+	{
+		string resMsg = ev.get_messages()[0]->get_string();
+
+		int index = 0;
+		for (int i = 0; i < 10; i++)
+		{
+			for (int j = 0; j < 10; j++) {
+				cp_board[i][j] = resMsg.at(index);
+				index += 1;
+			}
+		}
+
+		cout << "\n 양측의 배치가 완료되어 게임을 시작합니다.";
+
+	});
+
+
+	h.socket()->emit("SetPostionDone", msg);
+	cout << "상대방의 전함배치를 기다려주세요.";
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -981,7 +1006,7 @@ void position()
 	}
 	system("cls");
 	print_board();
-	system("pause");
+	//system("pause");
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 int rand_num(int high)
@@ -1534,4 +1559,33 @@ void textcolor(int foreground, int background)
 {
 	int color = foreground + background * 16;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
+/**
+@brief : 문자열을 잘라주는 함수입니다.
+@strOrigin : 자를 데이터
+@strTok : 분기줄 데이터
+@string : 반환형 , 배열로 인자전달
+*/
+string* StringSplit(string strTarget, string strTok)
+{
+	int     nCutPos;
+	int     nIndex = 0;
+	string* strResult = new string[100];
+	
+	while ((nCutPos = strTarget.find_first_of(strTok)) != strTarget.npos)
+	{
+		if (nCutPos > 0)
+		{
+			strResult[nIndex++] = strTarget.substr(0, nCutPos);
+		}
+		strTarget = strTarget.substr(nCutPos + 1);
+	}
+
+	if (strTarget.length() > 0)
+	{
+		strResult[nIndex++] = strTarget.substr(0, nCutPos);
+	}
+
+	return strResult;
 }
