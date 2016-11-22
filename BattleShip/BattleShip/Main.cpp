@@ -30,26 +30,26 @@
 using namespace sio;
 using namespace std;
 
-//ÇÔ¼ö
-void initial();//»ç¿ëÀÚ º¸µå ÃÊ±âÄ¡ ¼³Á¤
-void cp_initial();//ÄÄÇ»ÅÍÀÇ º¸µå ÃÊ±âÄ¡ ¼³Á¤
-void position();//»ç¿ëÀÚÀÇ ¹è À§Ä¡ ¿ÀÁ÷ ¼öÆòÀ¸·Î ±×¸®°í ¼öÁ÷À¸·Î
-void cp_position();//65=Ç×°ø¸ğÇÔ(aircraft carrier), 66=ÀüÇÔ(battleship), 68=±¸ÃàÇÔ(destroyer), 83=Àá¼öÇÔ(submarine), 80=ÃÊ°èÁ¤(patrol boat)
+//í•¨ìˆ˜
+void initial();//ì‚¬ìš©ì ë³´ë“œ ì´ˆê¸°ì¹˜ ì„¤ì •
+void cp_initial();//ì»´í“¨í„°ì˜ ë³´ë“œ ì´ˆê¸°ì¹˜ ì„¤ì •
+void position();//ì‚¬ìš©ìì˜ ë°° ìœ„ì¹˜ ì˜¤ì§ ìˆ˜í‰ìœ¼ë¡œ ê·¸ë¦¬ê³  ìˆ˜ì§ìœ¼ë¡œ
+void cp_position();//65=í•­ê³µëª¨í•¨(aircraft carrier), 66=ì „í•¨(battleship), 68=êµ¬ì¶•í•¨(destroyer), 83=ì ìˆ˜í•¨(submarine), 80=ì´ˆê³„ì •(patrol boat)
 
-void multi_play();//¹æ¿¡ Âü°¡µÇ¾î ¸ÖÆ¼ÇÃ·¹ÀÌ °ÔÀÓ ½ÃÀÛ 
-void print_board();//»ç¿ëÀÚÀÇ º¸µå Ãâ·Â
-void cp_print_board();//ÄÄÇ»ÅÍÀÇ º¸µå Ãâ·Â
-void attack();//»ç¿ëÀÚÀÇ °ø°İ
-void cp_attack();//ÄÄÇ»ÅÍÀÇ °ø°İ. 120=hit, 46=miss
-int attack_check(int row, int column);//È®ÀÎÇÑ´Ù ÁöÁ¡À» °ø°İÇÏ¿´À»°æ¿ì, ³õÄ£°æ¿ì ¶Ç´Â ÄÄÇ»ÅÍÀÇ »õ·Î¿î ÁöÁ¡  checks if the point is attacked, missed or new from the pc's board (»õ·Î¿îÁöÁ¡Àº ¹¹ÁÒ?)
-int cp_attack_check(int row, int column);//È®ÀÎÇÑ´Ù ÁöÁ¡À» °ø°İÇÏ¿´À»°æ¿ì, ³õÄ£°æ¿ì ¶Ç´Â »ç¿ëÀÚÀÇ »õ·Î¿î º¸µå??checks if the point is attacked, missed or new from the player's board
-int rand_num(int high); //ÆÄ¶ó¹ÌÅÍ°ªº¸´Ù ³·Àº ·£´ıÇÔ¼ö
-int victory_check();//»ç¿ëÀÚ°¡ ÀÌ°å´ÂÁö È®ÀÎ
-int cp_victory_check();//ÄÄÇ»ÅÍ°¡ ÀÌ°å´ÂÁö È®ÀÎ
+void multi_play();//ë°©ì— ì°¸ê°€ë˜ì–´ ë©€í‹°í”Œë ˆì´ ê²Œì„ ì‹œì‘ 
+void print_board();//ì‚¬ìš©ìì˜ ë³´ë“œ ì¶œë ¥
+void cp_print_board();//ì»´í“¨í„°ì˜ ë³´ë“œ ì¶œë ¥
+void attack();//ì‚¬ìš©ìì˜ ê³µê²©
+void cp_attack();//ì»´í“¨í„°ì˜ ê³µê²©. 120=hit, 46=miss
+int attack_check(int row, int column);//í™•ì¸í•œë‹¤ ì§€ì ì„ ê³µê²©í•˜ì˜€ì„ê²½ìš°, ë†“ì¹œê²½ìš° ë˜ëŠ” ì»´í“¨í„°ì˜ ìƒˆë¡œìš´ ì§€ì   checks if the point is attacked, missed or new from the pc's board (ìƒˆë¡œìš´ì§€ì ì€ ë­ì£ ?)
+int cp_attack_check(int row, int column);//í™•ì¸í•œë‹¤ ì§€ì ì„ ê³µê²©í•˜ì˜€ì„ê²½ìš°, ë†“ì¹œê²½ìš° ë˜ëŠ” ì‚¬ìš©ìì˜ ìƒˆë¡œìš´ ë³´ë“œ??checks if the point is attacked, missed or new from the player's board
+int rand_num(int high); //íŒŒë¼ë¯¸í„°ê°’ë³´ë‹¤ ë‚®ì€ ëœë¤í•¨ìˆ˜
+int victory_check();//ì‚¬ìš©ìê°€ ì´ê²¼ëŠ”ì§€ í™•ì¸
+int cp_victory_check();//ì»´í“¨í„°ê°€ ì´ê²¼ëŠ”ì§€ í™•ì¸
 void ship_coordinates();//goes through the board and records the player's ship coordinates
-int distance_check(int a, int b, int num);//È®ÀÎÇÑ´Ù º¸Æ®ÀÇ À§Ä¡°¡ À¯È¿ÇÑÁö ¸ÂÀ¸¸é 1, ¾Æ´Ï¸é 0 
-void textcolor(int foreground, int background); //ÅØ½ºÆ® ÄÃ·¯ º¯°æ ÇÔ¼ö
-										  //Àü¿ªÇÔ¼ö
+int distance_check(int a, int b, int num);//í™•ì¸í•œë‹¤ ë³´íŠ¸ì˜ ìœ„ì¹˜ê°€ ìœ íš¨í•œì§€ ë§ìœ¼ë©´ 1, ì•„ë‹ˆë©´ 0 
+void textcolor(int foreground, int background); //í…ìŠ¤íŠ¸ ì»¬ëŸ¬ ë³€ê²½ í•¨ìˆ˜
+										  //ì „ì—­í•¨ìˆ˜
 int board[10][10];
 int cp_board[10][10];
 int A[5][2];
@@ -59,28 +59,28 @@ int S[3][2];
 int P[2][2];
 int HIT = 0, row, column;
 char SHIP;
-char state[6];//ÄÄÇ»ÅÍ°¡ °ø°İÇÏ°Å³ª ³õÄ¥‹š ¸»ÇÑ´Ù.
+char state[6];//ì»´í“¨í„°ê°€ ê³µê²©í•˜ê±°ë‚˜ ë†“ì¹ Â‹Âš ë§í•œë‹¤.
 int multiPlayCheck;
-string roomIndex;// ¸ÖÆ¼ÇÃ·¹ÀÌ Á¢¼ÓÇÑ ¹æÀÇ ÀÎµ¦½º
-sio::client h; // ¸ÖÆ¼ÇÃ·¹ÀÌ¿¡ ¾²ÀÌ´Â socket.io Å¬¶óÀÌ¾ğÆ®.
+string roomIndex;// ë©€í‹°í”Œë ˆì´ ì ‘ì†í•œ ë°©ì˜ ì¸ë±ìŠ¤
+sio::client h; // ë©€í‹°í”Œë ˆì´ì— ì“°ì´ëŠ” socket.io í´ë¼ì´ì–¸íŠ¸.
 
 int main()
 {
 	textcolor(YELLOW, BLACK);
 	printf("\n\n\n\n\n\n");
-	printf("XXXXX   XXXX  XXXXXX XXXXXX XX     XXXXXX  XXXXX XX  XX XX XXXX\n");
-	printf("XX  XX XX  XX   XX     XX   XX     XX     XX     XX  XX XX XX  XX\n");
-	printf("XXXXX  XX  XX   XX     XX   XX     XXXX    XXXX  XXXXXX XX XXXX\n");
-	printf("XX  XX XXXXXX   XX     XX   XX     XX         XX XX  XX XX XX\n");
-	printf("XXXXX  XX  XX   XX     XX   XXXXXX XXXXXX XXXXX  XX  XX XX XX\n");
+	printf("        XXXXX   XXXX  XXXXXX XXXXXX XX     XXXXXX      XXXXX XX  XX XX XXXX\n");
+	printf("        XX  XX XX  XX   XX     XX   XX     XX         XX     XX  XX XX XX  XX\n");
+	printf("        XXXXX  XX  XX   XX     XX   XX     XXXX        XXXX  XXXXXX XX XXXX\n");
+	printf("        XX  XX XXXXXX   XX     XX   XX     XX             XX XX  XX XX XX\n");
+	printf("        XXXXX  XX  XX   XX     XX   XXXXXX XXXXXX     XXXXX  XX  XX XX XX\n");
 	printf("\n\n\n\n");
 	textcolor(WHITE, BLACK);
 
-	printf("1. ½Ì±Û ÇÃ·¹ÀÌ \n2. ¸ÖÆ¼ ÇÃ·¹ÀÌ\n3. Á¤º¸\n");
-	printf("ÀÔ·Â : ");
-	scanf("%d", &multiPlayCheck); // ½Ì±ÛÇÃ·¹ÀÌ, ¸ÖÆ¼ÇÃ·¹ÀÌ ¼±ÅÃ 
+	printf("1. ì‹±ê¸€ í”Œë ˆì´ \n2. ë©€í‹° í”Œë ˆì´\n3. ì •ë³´\n");
+	printf("ì…ë ¥ : ");
+	scanf("%d", &multiPlayCheck); // ì‹±ê¸€í”Œë ˆì´, ë©€í‹°í”Œë ˆì´ ì„ íƒ 
 
-	if (multiPlayCheck == SINGLE_PLAY) {  // ½Ì±ÛÇÃ·¹ÀÌÀÏ°æ¿ì
+	if (multiPlayCheck == SINGLE_PLAY) {  // ì‹±ê¸€í”Œë ˆì´ì¼ê²½ìš°
 		int turn_count = 1;
 		//player
 		initial();
@@ -93,10 +93,10 @@ int main()
 		while (1)
 		{
 			//player's turn        
-			printf("»ç¿ëÀÚÀÇ ÅÏ %d:\n\n", turn_count);
+			printf("ì‚¬ìš©ìì˜ í„´ %d:\n\n", turn_count);
 			cp_print_board();
 			attack();
-			if (victory_check() == 0)    //³²Àº ¹è°¡ ¾ø³ª È®ÀÎ
+			if (victory_check() == 0)    //ë‚¨ì€ ë°°ê°€ ì—†ë‚˜ í™•ì¸
 			{
 				break;
 			}
@@ -104,9 +104,9 @@ int main()
 			//cp's turn
 			cp_attack();
 			system("cls");
-			printf("ÄÄÇ»ÅÍÀÇ ÅÏ %d: (%d,%d) %s \n\n", turn_count, (row + 1), (column + 1), state);
+			printf("ì»´í“¨í„°ì˜ í„´ %d: (%d,%d) %s \n\n", turn_count, (row + 1), (column + 1), state);
 			print_board();
-			if (cp_victory_check() == 0)      // ³²Àº ¹è°¡ ¾ø³ª È®ÀÎ
+			if (cp_victory_check() == 0)      // ë‚¨ì€ ë°°ê°€ ì—†ë‚˜ í™•ì¸
 			{
 				break;
 			}
@@ -123,26 +123,26 @@ int main()
 			system("pause");
 		}
 	}
-	else if (multiPlayCheck == MULTI_PLAY) // ¸ÖÆ¼ÇÃ·¹ÀÌÀÏ°æ¿ì
+	else if (multiPlayCheck == MULTI_PLAY) // ë©€í‹°í”Œë ˆì´ì¼ê²½ìš°
 	{
 		int eventFlag = 0;
 
 		h.connect(SERVER_ADDRESS);
 
-		Sleep(250); // TODO ÀÌºÎºĞ Á¢¼Ó½Ã ÀÌº¥Æ® ¹ß»ıÃ³¸®·Î º¯°æÇØ¾ßÇÔ. https://github.com/socketio/socket.io-client-cpp/blob/master/API.md
+		Sleep(250); // TODO ì´ë¶€ë¶„ ì ‘ì†ì‹œ ì´ë²¤íŠ¸ ë°œìƒì²˜ë¦¬ë¡œ ë³€ê²½í•´ì•¼í•¨. https://github.com/socketio/socket.io-client-cpp/blob/master/API.md
 
-		h.socket()->on("GetRoomListRes", [&](sio::event& ev)  // ¹æ¸ñ·Ï °¡Á®¿À±â Äİ¹é ÀÌº¥Æ®
+		h.socket()->on("GetRoomListRes", [&](sio::event& ev)  // ë°©ëª©ë¡ ê°€ì ¸ì˜¤ê¸° ì½œë°± ì´ë²¤íŠ¸
 		{
 
-			cout << ev.get_messages()[0]->get_string(); // ¹æ¸í´Ü Ãâ·Â
+			cout << ev.get_messages()[0]->get_string(); // ë°©ëª…ë‹¨ ì¶œë ¥
 
-			cout << "\n Á¢¼ÓÇÏ½Ç ¹æÀÇ ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.";
+			cout << "\n ì ‘ì†í•˜ì‹¤ ë°©ì˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.";
 			getline(cin, roomIndex);
 			std::getline(cin, roomIndex);
 
-			h.socket()->on("JoinRoom" + h.get_sessionid(), [&](sio::event& ev)  // ¹æ¸ñ·Ï °¡Á®¿À±â Äİ¹é ÀÌº¥Æ®
+			h.socket()->on("JoinRoom" + h.get_sessionid(), [&](sio::event& ev)  // ë°©ëª©ë¡ ê°€ì ¸ì˜¤ê¸° ì½œë°± ì´ë²¤íŠ¸
 			{
-				cout << "\n °ÔÀÓÀ» ½ÃÀÛÇÕ´Ï´Ù.";
+				cout << "\n ê²Œì„ì„ ì‹œì‘í•©ë‹ˆë‹¤.";
 				multi_play();
 			});
 
@@ -154,8 +154,8 @@ int main()
 
 		int flag;
 
-		printf("1. ¹æ¸ñ·Ï °¡Á®¿À±â ¹× Á¢¼Ó\n2. ¹æ »ı¼ºÇÏ±â\n");
-		printf("ÀÔ·Â : ");
+		printf("1. ë°©ëª©ë¡ ê°€ì ¸ì˜¤ê¸° ë° ì ‘ì†\n2. ë°© ìƒì„±í•˜ê¸°\n");
+		printf("ì…ë ¥ : ");
 		scanf("%d", &flag);
 
 		if (flag == 1) {
@@ -163,26 +163,26 @@ int main()
 		}
 		else if (flag == 2)
 		{
-			string roomName; // ¹®ÀÚ¿­ ¹æÀÌ¸§
-			printf("»ı¼ºÇÒ ¹æÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ½Ã¿À.\n");
-			printf("ÀÔ·Â : ");
+			string roomName; // ë¬¸ìì—´ ë°©ì´ë¦„
+			printf("ìƒì„±í•  ë°©ì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì‹œì˜¤.\n");
+			printf("ì…ë ¥ : ");
 			getline(cin, roomName);
 			std::getline(cin, roomName);
 
 			h.socket()->on("JoinRoom" + h.get_sessionid(), [&](sio::event& ev)
 			{
 				roomIndex = ev.get_messages()[0]->get_string();
-				cout << "\n »ó´ë¹æÀÌ Á¢¼ÓÇÏ¿© °ÔÀÓÀ» ½ÃÀÛÇÕ´Ï´Ù.";
+				cout << "\n ìƒëŒ€ë°©ì´ ì ‘ì†í•˜ì—¬ ê²Œì„ì„ ì‹œì‘í•©ë‹ˆë‹¤.";
 				multi_play();
 			});
 
-			h.socket()->emit("CreateRoom", roomName); // ¼­¹ö¿¡ Åë½Å.
+			h.socket()->emit("CreateRoom", roomName); // ì„œë²„ì— í†µì‹ .
 			
-			cout << "»ó´ë¹æÀÌ Á¢¼ÓÇÒ¶§±îÁö ±â´Ù¸®½Ê½Ã¿À.";
+			cout << "ìƒëŒ€ë°©ì´ ì ‘ì†í• ë•Œê¹Œì§€ ê¸°ë‹¤ë¦¬ì‹­ì‹œì˜¤.";
 		}
 
 		while (true) {
-			Sleep(200); // ¸®¼Ò½º ºÎÇÏ ¹æÁö
+			Sleep(200); // ë¦¬ì†ŒìŠ¤ ë¶€í•˜ ë°©ì§€
 		}
 		
 	}
@@ -198,7 +198,7 @@ void multi_play()
 	cp_initial();
 	position();
 
-	string msg = roomIndex + ".";   // 0¹øÂ° ¹æ¹øÈ£ ½ºÇÃ¸´ ³ª¸ÓÁö´Â bord
+	string msg = roomIndex + ".";   // 0ë²ˆì§¸ ë°©ë²ˆí˜¸ ìŠ¤í”Œë¦¿ ë‚˜ë¨¸ì§€ëŠ” bord
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 10; j++) {
 			msg += board[i][j];
@@ -217,13 +217,13 @@ void multi_play()
 			}
 		}
 
-		cout << "\n ¾çÃøÀÇ ¹èÄ¡°¡ ¿Ï·áµÇ¾î °ÔÀÓÀ» ½ÃÀÛÇÕ´Ï´Ù.";
+		cout << "\n ì–‘ì¸¡ì˜ ë°°ì¹˜ê°€ ì™„ë£Œë˜ì–´ ê²Œì„ì„ ì‹œì‘í•©ë‹ˆë‹¤.";
 
 	});
 
 
 	h.socket()->emit("SetPostionDone", msg);
-	cout << "»ó´ë¹æÀÇ ÀüÇÔ¹èÄ¡¸¦ ±â´Ù·ÁÁÖ¼¼¿ä.";
+	cout << "ìƒëŒ€ë°©ì˜ ì „í•¨ë°°ì¹˜ë¥¼ ê¸°ë‹¤ë ¤ì£¼ì„¸ìš”.";
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -241,7 +241,7 @@ int victory_check()
 
 		}
 	}
-	return boats_left;//³²Àº ¹è°¡ ¾øÀ¸¸é return 0;
+	return boats_left;//ë‚¨ì€ ë°°ê°€ ì—†ìœ¼ë©´ return 0;
 
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -259,12 +259,12 @@ int cp_victory_check()
 			}
 		}
 	}
-	return boats_left;  //³²Àº ¹è°¡ ¾øÀ¸¸é return 0;
+	return boats_left;  //ë‚¨ì€ ë°°ê°€ ì—†ìœ¼ë©´ return 0;
 
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void initial()    //»ç¿ëÀÚ º¸µå ÃÊ±âÄ¡ ¼³Á¤
+void initial()    //ì‚¬ìš©ì ë³´ë“œ ì´ˆê¸°ì¹˜ ì„¤ì •
 {
 	int i, j;
 	for (i = 0; i < 10; i++)
@@ -273,7 +273,7 @@ void initial()    //»ç¿ëÀÚ º¸µå ÃÊ±âÄ¡ ¼³Á¤
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void cp_initial()     //ÄÄÇ»ÅÍ º¸µå ÃÊ±âÄ¡ ¼³Á¤
+void cp_initial()     //ì»´í“¨í„° ë³´ë“œ ì´ˆê¸°ì¹˜ ì„¤ì •
 {
 	int i, j;
 	for (i = 0; i < 10; i++)
@@ -337,11 +337,11 @@ void cp_print_board()
 		{
 			switch (cp_board[i][j])
 			{
-			case 65:      //65 = Ç×°ø¸ğÇÔ(aircraft carrier) 
-			case 66:      //66 = ÀüÇÔ(battleship)
-			case 68:      //68 = ±¸ÃàÇÔ(destroyer)
-			case 83:      //83 = Àá¼öÇÔ(submarine)
-			case 80:      //80 = ÃÊ°èÁ¤(patrol boat)
+			case 65:      //65 = í•­ê³µëª¨í•¨(aircraft carrier) 
+			case 66:      //66 = ì „í•¨(battleship)
+			case 68:      //68 = êµ¬ì¶•í•¨(destroyer)
+			case 83:      //83 = ì ìˆ˜í•¨(submarine)
+			case 80:      //80 = ì´ˆê³„ì •(patrol boat)
 				printf("%3c", 126);
 				break;
 			case 120:     //????
@@ -360,7 +360,7 @@ void cp_print_board()
 int distance_check(int a, int b, int num)
 {
 	int temp;
-	if (b > a)       //a°¡ Ç×»ó Å©´Ù ±×·¡¼­ b°¡ ´õ Ä¿Áö¸é ÀÚ¸®¸¦ ¹Ù²Û´Ù.
+	if (b > a)       //aê°€ í•­ìƒ í¬ë‹¤ ê·¸ë˜ì„œ bê°€ ë” ì»¤ì§€ë©´ ìë¦¬ë¥¼ ë°”ê¾¼ë‹¤.
 	{
 		temp = b;
 		b = a;
@@ -381,42 +381,42 @@ void position()
 {
 	int column, row, column2, row2, i, found, dist1, dist2;
 
-	///////////////Aircraft carrier 65 Ç×°ø¸ğÇÔ
+	///////////////Aircraft carrier 65 í•­ê³µëª¨í•¨
 	system("cls");
-	printf("¡Ú¡Ú¡Ú¡Ú¡Ú¡ÚÇÔ´ë ¹èÄ¡Áß¡Ú¡Ú¡Ú¡Ú¡Ú¡Ú\n\n");
+	printf("â˜…â˜…â˜…â˜…â˜…â˜…í•¨ëŒ€ ë°°ì¹˜ì¤‘â˜…â˜…â˜…â˜…â˜…â˜…\n\n");
 	print_board();
 	do
 	{
-		printf("Ç×°ø¸ğÇÔ 5´ë¸¦ ÇÑÁÙ·Î ¹èÄ¡ÇØÁÖ¼¼¿ä. \n½ÃÀÛÁÂÇ¥¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä \n");
+		printf("í•­ê³µëª¨í•¨ 5ëŒ€ë¥¼ í•œì¤„ë¡œ ë°°ì¹˜í•´ì£¼ì„¸ìš”. \nì‹œì‘ì¢Œí‘œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš” \n");
 		do
 		{
-			printf("°¡·Î: ");
+			printf("ê°€ë¡œ: ");
 			scanf_s("%d", &row);
 		} while (row < 1 || row>10);
 
 		do
 		{
-			printf("¼¼·Î: ");
+			printf("ì„¸ë¡œ: ");
 			scanf_s("%d", &column);
 		} while (column < 1 || column>10);
 
-		printf("¹èÄ¡°¡ ³¡³ª´Â ÁÂÇ¥¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
+		printf("ë°°ì¹˜ê°€ ëë‚˜ëŠ” ì¢Œí‘œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”\n");
 		do
 		{
-			printf("°¡·Î: ");
+			printf("ê°€ë¡œ: ");
 			scanf_s("%d", &row2);
 		} while (row2 < 1 || row2>10);
 
 		do
 		{
-			printf("¼¼·Î: ");
+			printf("ì„¸ë¡œ: ");
 			scanf_s("%d", &column2);
 		} while (column2 < 1 || column2>10);
 
-		dist1 = distance_check(row, row2, 5);//vertical ¼öÁ÷
-		dist2 = distance_check(column, column2, 5);//horizontal  ¼öÆò
+		dist1 = distance_check(row, row2, 5);//vertical ìˆ˜ì§
+		dist2 = distance_check(column, column2, 5);//horizontal  ìˆ˜í‰
 		found = 0;
-		if (dist1 == 1)    //¹è°¡ ¼öÁ÷À¸·Î ¹è¿­µÇ¿©ÀÖ´Ù¸é if the ship is placed vertically
+		if (dist1 == 1)    //ë°°ê°€ ìˆ˜ì§ìœ¼ë¡œ ë°°ì—´ë˜ì—¬ìˆë‹¤ë©´ if the ship is placed vertically
 		{
 			if (row > row2)
 			{
@@ -439,7 +439,7 @@ void position()
 				}
 			}
 		}
-		else if (dist2 == 1) //¹è°¡ ¼öÆòÀ¸·Î ¹èÄ¡µÇ¿©ÀÖ´Ù¸é  if the ship is placed horizontally
+		else if (dist2 == 1) //ë°°ê°€ ìˆ˜í‰ìœ¼ë¡œ ë°°ì¹˜ë˜ì—¬ìˆë‹¤ë©´  if the ship is placed horizontally
 		{
 			if (column > column2)
 			{
@@ -465,13 +465,13 @@ void position()
 		if ((dist1 == 0 && dist2 == 0) || (dist1 == 1 && dist2 == 1) || found > 0)
 		{
 			system("cls");
-			printf("¡Ú¡Ú¡Ú¡Ú¡Ú¡ÚÇÔ´ë ¹èÄ¡Áß¡Ú¡Ú¡Ú¡Ú¡Ú¡Ú\n\n");
+			printf("â˜…â˜…â˜…â˜…â˜…â˜…í•¨ëŒ€ ë°°ì¹˜ì¤‘â˜…â˜…â˜…â˜…â˜…â˜…\n\n");
 			print_board();
-			printf("ÁÂÇ¥¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä\n\n");
+			printf("ì¢Œí‘œë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”\n\n");
 		}
 	} while ((dist1 == 0 && dist2 == 0) || (dist1 == 1 && dist2 == 1) || found > 0);
 
-	if (dist1 == 1) //¹è°¡ ¼öÁ÷À¸·Î ¹èÄ¡ µÇ¾îÀÖ´Ù¸é if the ship is placed vertically
+	if (dist1 == 1) //ë°°ê°€ ìˆ˜ì§ìœ¼ë¡œ ë°°ì¹˜ ë˜ì–´ìˆë‹¤ë©´ if the ship is placed vertically
 	{
 		if (row > row2)
 		{
@@ -488,7 +488,7 @@ void position()
 			}
 		}
 	}
-	else if (dist2 == 1)   //¹è°¡ ¼öÆòÀ¸·Î ¹èÄ¡µÇ¾îÀÖ´Ù¸éif the ship is placed horizontally
+	else if (dist2 == 1)   //ë°°ê°€ ìˆ˜í‰ìœ¼ë¡œ ë°°ì¹˜ë˜ì–´ìˆë‹¤ë©´if the ship is placed horizontally
 	{
 		if (column > column2)
 		{
@@ -506,42 +506,42 @@ void position()
 		}
 	}
 
-	////////////////////////////Battleship 66 ÀüÇÔ
+	////////////////////////////Battleship 66 ì „í•¨
 	system("cls");
-	printf("¡Ú¡Ú¡Ú¡Ú¡Ú¡ÚÇÔ´ë ¹èÄ¡Áß¡Ú¡Ú¡Ú¡Ú¡Ú¡Ú\n\n");
+	printf("â˜…â˜…â˜…â˜…â˜…â˜…í•¨ëŒ€ ë°°ì¹˜ì¤‘â˜…â˜…â˜…â˜…â˜…â˜…\n\n");
 	print_board();
 	do
 	{
-		printf("ÀüÇÔ 4´ë¸¦ ÇÑÁÙ·Î ¹èÄ¡ÇØÁÖ¼¼¿ä. \n½ÃÀÛÁÂÇ¥¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä \n");
+		printf("ì „í•¨ 4ëŒ€ë¥¼ í•œì¤„ë¡œ ë°°ì¹˜í•´ì£¼ì„¸ìš”. \nì‹œì‘ì¢Œí‘œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš” \n");
 		do
 		{
-			printf("°¡·Î: ");
+			printf("ê°€ë¡œ: ");
 			scanf_s("%d", &row);
 		} while (row < 1 || row>10);
 
 		do
 		{
-			printf("¼¼·Î: ");
+			printf("ì„¸ë¡œ: ");
 			scanf_s("%d", &column);
 		} while (column < 1 || column>10);
 
-		printf("¹èÄ¡°¡ ³¡³ª´Â ÁÂÇ¥¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
+		printf("ë°°ì¹˜ê°€ ëë‚˜ëŠ” ì¢Œí‘œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”\n");
 		do
 		{
-			printf("°¡·Î: ");
+			printf("ê°€ë¡œ: ");
 			scanf_s("%d", &row2);
 		} while (row2 < 1 || row2>10);
 
 		do
 		{
-			printf("¼¼·Î: ");
+			printf("ì„¸ë¡œ: ");
 			scanf_s("%d", &column2);
 		} while (column2 < 1 || column2>10);
 
-		dist1 = distance_check(row, row2, 4);//vertical¼öÁ÷
-		dist2 = distance_check(column, column2, 4);//horizontal ¼öÆò
+		dist1 = distance_check(row, row2, 4);//verticalìˆ˜ì§
+		dist2 = distance_check(column, column2, 4);//horizontal ìˆ˜í‰
 		found = 0;
-		if (dist1 == 1) //if the ship is placed vertically ÀüÇÔÀÌ ¼öÁ÷ÀÌ¶ó¸é
+		if (dist1 == 1) //if the ship is placed vertically ì „í•¨ì´ ìˆ˜ì§ì´ë¼ë©´
 		{
 			if (row > row2)
 			{
@@ -564,7 +564,7 @@ void position()
 				}
 			}
 		}
-		else if (dist2 == 1) //if the ship is placed horizontallyÀüÇÔÀÌ ¼öÆòÀÌ¶ó¸é
+		else if (dist2 == 1) //if the ship is placed horizontallyì „í•¨ì´ ìˆ˜í‰ì´ë¼ë©´
 		{
 			if (column > column2)
 			{
@@ -590,13 +590,13 @@ void position()
 		if ((dist1 == 0 && dist2 == 0) || (dist1 == 1 && dist2 == 1) || found > 0)
 		{
 			system("cls");
-			printf("¡Ú¡Ú¡Ú¡Ú¡Ú¡ÚÇÔ´ë ¹èÄ¡Áß¡Ú¡Ú¡Ú¡Ú¡Ú¡Ú\n\n");
+			printf("â˜…â˜…â˜…â˜…â˜…â˜…í•¨ëŒ€ ë°°ì¹˜ì¤‘â˜…â˜…â˜…â˜…â˜…â˜…\n\n");
 			print_board();
-			printf("ÁÂÇ¥¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä\n\n");
+			printf("ì¢Œí‘œë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”\n\n");
 		}
 	} while ((dist1 == 0 && dist2 == 0) || (dist1 == 1 && dist2 == 1) || found > 0);
 
-	if (dist1 == 1) //if the ship is placed verticallyÇÔ´ë°¡ ¼öÁ÷À¸·Î ¹èÄ¡µÇ¾îÀÖÀ¸¸é
+	if (dist1 == 1) //if the ship is placed verticallyí•¨ëŒ€ê°€ ìˆ˜ì§ìœ¼ë¡œ ë°°ì¹˜ë˜ì–´ìˆìœ¼ë©´
 	{
 		if (row > row2)
 		{
@@ -613,7 +613,7 @@ void position()
 			}
 		}
 	}
-	else if (dist2 == 1)//if the ship is placed horizontally ÇÔ´ë°¡ ¼öÆòÀ¸·Î ¹èÄ¡µÇ¾îÀÖÀ¸¸é
+	else if (dist2 == 1)//if the ship is placed horizontally í•¨ëŒ€ê°€ ìˆ˜í‰ìœ¼ë¡œ ë°°ì¹˜ë˜ì–´ìˆìœ¼ë©´
 	{
 		if (column > column2)
 		{
@@ -630,42 +630,42 @@ void position()
 			}
 		}
 	}
-	////////////////////Destroyer 68  ±¸ÃàÇÔ 
+	////////////////////Destroyer 68  êµ¬ì¶•í•¨ 
 	system("cls");
-	printf("¡Ú¡Ú¡Ú¡Ú¡Ú¡ÚÇÔ´ë ¹èÄ¡Áß¡Ú¡Ú¡Ú¡Ú¡Ú¡Ú\n\n");
+	printf("â˜…â˜…â˜…â˜…â˜…â˜…í•¨ëŒ€ ë°°ì¹˜ì¤‘â˜…â˜…â˜…â˜…â˜…â˜…\n\n");
 	print_board();
 	do
 	{
-		printf("±¸ÃàÇÔ 3´ë¸¦ ÇÑÁÙ·Î ¹èÄ¡ÇØÁÖ¼¼¿ä.\n½ÃÀÛÁÂÇ¥¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä \n");
+		printf("êµ¬ì¶•í•¨ 3ëŒ€ë¥¼ í•œì¤„ë¡œ ë°°ì¹˜í•´ì£¼ì„¸ìš”.\nì‹œì‘ì¢Œí‘œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš” \n");
 		do
 		{
-			printf("°¡·Î: ");
+			printf("ê°€ë¡œ: ");
 			scanf_s("%d", &row);
 		} while (row < 1 || row>10);
 
 		do
 		{
-			printf("¼¼·Î: ");
+			printf("ì„¸ë¡œ: ");
 			scanf_s("%d", &column);
 		} while (column < 1 || column>10);
 
-		printf("¹èÄ¡°¡ ³¡³ª´Â ÁÂÇ¥¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
+		printf("ë°°ì¹˜ê°€ ëë‚˜ëŠ” ì¢Œí‘œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”\n");
 		do
 		{
-			printf("°¡·Î: ");
+			printf("ê°€ë¡œ: ");
 			scanf_s("%d", &row2);
 		} while (row2 < 1 || row2>10);
 
 		do
 		{
-			printf("¼¼·Î: ");
+			printf("ì„¸ë¡œ: ");
 			scanf_s("%d", &column2);
 		} while (column2 < 1 || column2>10);
 
-		dist1 = distance_check(row, row2, 3);//vertical¼öÁ÷
-		dist2 = distance_check(column, column2, 3);//horizontal ¼öÆò
+		dist1 = distance_check(row, row2, 3);//verticalìˆ˜ì§
+		dist2 = distance_check(column, column2, 3);//horizontal ìˆ˜í‰
 		found = 0;
-		if (dist1 == 1) //if the ship is placed verticallyÇÔ´ë°¡ ¼öÁ÷À¸·Î ¹èÄ¡
+		if (dist1 == 1) //if the ship is placed verticallyí•¨ëŒ€ê°€ ìˆ˜ì§ìœ¼ë¡œ ë°°ì¹˜
 		{
 			if (row > row2)
 			{
@@ -689,7 +689,7 @@ void position()
 				}
 			}
 		}
-		else if (dist2 == 1) //if the ship is placed horizontally ÀüÇÔÀÌ ¼öÆòÀ¸·Î ¹èÄ¡
+		else if (dist2 == 1) //if the ship is placed horizontally ì „í•¨ì´ ìˆ˜í‰ìœ¼ë¡œ ë°°ì¹˜
 		{
 			if (column > column2)
 			{
@@ -714,13 +714,13 @@ void position()
 		}
 		if ((dist1 == 0 && dist2 == 0) || (dist1 == 1 && dist2 == 1) || found > 0) {
 			system("cls");
-			printf("¡Ú¡Ú¡Ú¡Ú¡Ú¡ÚÇÔ´ë ¹èÄ¡Áß¡Ú¡Ú¡Ú¡Ú¡Ú¡Ú\n\n");
+			printf("â˜…â˜…â˜…â˜…â˜…â˜…í•¨ëŒ€ ë°°ì¹˜ì¤‘â˜…â˜…â˜…â˜…â˜…â˜…\n\n");
 			print_board();
-			printf("ÁÂÇ¥¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä\n\n");
+			printf("ì¢Œí‘œë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”\n\n");
 		}
 	} while ((dist1 == 0 && dist2 == 0) || (dist1 == 1 && dist2 == 1) || found > 0);
 
-	if (dist1 == 1) //if the ship is placed vertically ÀüÇÔÀÌ ¼öÁ÷À¸·Î ¹èÄ¡
+	if (dist1 == 1) //if the ship is placed vertically ì „í•¨ì´ ìˆ˜ì§ìœ¼ë¡œ ë°°ì¹˜
 	{
 		if (row > row2)
 		{
@@ -737,7 +737,7 @@ void position()
 			}
 		}
 	}
-	else if (dist2 == 1) //if the ship is placed horizontally ÀüÇÔÀÌ ¼öÆòÀ¸·Î ¹èÄ¡
+	else if (dist2 == 1) //if the ship is placed horizontally ì „í•¨ì´ ìˆ˜í‰ìœ¼ë¡œ ë°°ì¹˜
 	{
 		if (column > column2)
 		{
@@ -755,42 +755,42 @@ void position()
 		}
 	}
 
-	//////////////////////////////Submarine  83 Àá¼öÇÔ
+	//////////////////////////////Submarine  83 ì ìˆ˜í•¨
 	system("cls");
-	printf("¡Ú¡Ú¡Ú¡Ú¡Ú¡ÚÇÔ´ë ¹èÄ¡Áß¡Ú¡Ú¡Ú¡Ú¡Ú¡Ú\n\n");
+	printf("â˜…â˜…â˜…â˜…â˜…â˜…í•¨ëŒ€ ë°°ì¹˜ì¤‘â˜…â˜…â˜…â˜…â˜…â˜…\n\n");
 	print_board();
 	do
 	{
-		printf("Àá¼öÇÔ 3´ë¸¦ ÇÑÁÙ·Î ¹èÄ¡ÇØÁÖ¼¼¿ä.\n½ÃÀÛÁÂÇ¥¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n");
+		printf("ì ìˆ˜í•¨ 3ëŒ€ë¥¼ í•œì¤„ë¡œ ë°°ì¹˜í•´ì£¼ì„¸ìš”.\nì‹œì‘ì¢Œí‘œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.\n");
 		do
 		{
-			printf("°¡·Î: ");
+			printf("ê°€ë¡œ: ");
 			scanf_s("%d", &row);
 		} while (row < 1 || row>10);
 
 		do
 		{
-			printf("¼¼·Î: ");
+			printf("ì„¸ë¡œ: ");
 			scanf_s("%d", &column);
 		} while (column < 1 || column>10);
 
-		printf("¹èÄ¡°¡ ³¡³ª´Â ÁÂÇ¥¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
+		printf("ë°°ì¹˜ê°€ ëë‚˜ëŠ” ì¢Œí‘œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”\n");
 		do
 		{
-			printf("°¡·Î: ");
+			printf("ê°€ë¡œ: ");
 			scanf_s("%d", &row2);
 		} while (row2 < 1 || row2>10);
 
 		do
 		{
-			printf("¼¼·Î: ");
+			printf("ì„¸ë¡œ: ");
 			scanf_s("%d", &column2);
 		} while (column2 < 1 || column2>10);
 
-		dist1 = distance_check(row, row2, 3);//vertical ¼öÁ÷
-		dist2 = distance_check(column, column2, 3);//horizontal ¼öÆò
+		dist1 = distance_check(row, row2, 3);//vertical ìˆ˜ì§
+		dist2 = distance_check(column, column2, 3);//horizontal ìˆ˜í‰
 		found = 0;
-		if (dist1 == 1) //if the ship is placed vertically ÀüÇÔÀÌ ¼öÁ÷ÀÏ‹š
+		if (dist1 == 1) //if the ship is placed vertically ì „í•¨ì´ ìˆ˜ì§ì¼Â‹Âš
 		{
 			if (row > row2)
 			{
@@ -813,7 +813,7 @@ void position()
 				}
 			}
 		}
-		else if (dist2 == 1) //if the ship is placed horizontally ÀüÇÔÀÇ ¹èÄ¡°¡ ¼öÆòÀÏ‹š
+		else if (dist2 == 1) //if the ship is placed horizontally ì „í•¨ì˜ ë°°ì¹˜ê°€ ìˆ˜í‰ì¼Â‹Âš
 		{
 			if (column > column2)
 			{
@@ -839,13 +839,13 @@ void position()
 		if ((dist1 == 0 && dist2 == 0) || (dist1 == 1 && dist2 == 1) || found > 0)
 		{
 			system("cls");
-			printf("¡Ú¡Ú¡Ú¡Ú¡Ú¡ÚÇÔ´ë ¹èÄ¡Áß¡Ú¡Ú¡Ú¡Ú¡Ú¡Ú\n\n");
+			printf("â˜…â˜…â˜…â˜…â˜…â˜…í•¨ëŒ€ ë°°ì¹˜ì¤‘â˜…â˜…â˜…â˜…â˜…â˜…\n\n");
 			print_board();
-			printf("ÁÂÇ¥¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä\n\n");
+			printf("ì¢Œí‘œë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”\n\n");
 		}
 	} while ((dist1 == 0 && dist2 == 0) || (dist1 == 1 && dist2 == 1) || found > 0);
 
-	if (dist1 == 1) //if the ship is placed vertically ÀüÇÔÀÇ ¹èÄ¡°¡ ¼öÁ÷ÀÏ °æ¿ì
+	if (dist1 == 1) //if the ship is placed vertically ì „í•¨ì˜ ë°°ì¹˜ê°€ ìˆ˜ì§ì¼ ê²½ìš°
 	{
 		if (row > row2)
 		{
@@ -862,7 +862,7 @@ void position()
 			}
 		}
 	}
-	else if (dist2 == 1) //if the ship is placed horizontally ÀüÇÔÀÇ ¹èÄ¡°¡ ¼öÆòÀÏ°Ü¿ì
+	else if (dist2 == 1) //if the ship is placed horizontally ì „í•¨ì˜ ë°°ì¹˜ê°€ ìˆ˜í‰ì¼ê²¨ìš°
 	{
 		if (column > column2)
 		{
@@ -880,42 +880,42 @@ void position()
 		}
 	}
 
-	//////////////////Patrol boat  80 ÃÊ°èÁ¤
+	//////////////////Patrol boat  80 ì´ˆê³„ì •
 	system("cls");
-	printf("¡Ú¡Ú¡Ú¡Ú¡Ú¡ÚÇÔ´ë ¹èÄ¡Áß¡Ú¡Ú¡Ú¡Ú¡Ú¡Ú\n\n");
+	printf("â˜…â˜…â˜…â˜…â˜…â˜…í•¨ëŒ€ ë°°ì¹˜ì¤‘â˜…â˜…â˜…â˜…â˜…â˜…\n\n");
 	print_board();
 	do
 	{
-		printf("ÃÊ°èÁ¤ 2´ë¸¦ ÇÑÁÙ·Î ¹èÄ¡ÇØÁÖ¼¼¿ä.\n½ÃÀÛÁÂÇ¥¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n");
+		printf("ì´ˆê³„ì • 2ëŒ€ë¥¼ í•œì¤„ë¡œ ë°°ì¹˜í•´ì£¼ì„¸ìš”.\nì‹œì‘ì¢Œí‘œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.\n");
 		do
 		{
-			printf("°¡·Î: ");
+			printf("ê°€ë¡œ: ");
 			scanf_s("%d", &row);
 		} while (row < 1 || row>10);
 
 		do
 		{
-			printf("¼¼·Î: ");
+			printf("ì„¸ë¡œ: ");
 			scanf_s("%d", &column);
 		} while (column < 1 || column>10);
 
-		printf("¹èÄ¡°¡ ³¡³ª´Â ÁÂÇ¥¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
+		printf("ë°°ì¹˜ê°€ ëë‚˜ëŠ” ì¢Œí‘œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”\n");
 		do
 		{
-			printf("°¡·Î: ");
+			printf("ê°€ë¡œ: ");
 			scanf_s("%d", &row2);
 		} while (row2 < 1 || row2>10);
 
 		do
 		{
-			printf("¼¼·Î: ");
+			printf("ì„¸ë¡œ: ");
 			scanf_s("%d", &column2);
 		} while (column2 < 1 || column2>10);
 
-		dist1 = distance_check(row, row2, 2);//vertical ¼öÁ÷
-		dist2 = distance_check(column, column2, 2);//horizontal ¼öÆò
+		dist1 = distance_check(row, row2, 2);//vertical ìˆ˜ì§
+		dist2 = distance_check(column, column2, 2);//horizontal ìˆ˜í‰
 		found = 0;
-		if (dist1 == 1) //if the ship is placed vertically ÀüÇÔÀÇ ¹è¿­ÀÌ ¼öÁ÷ÀÏ‹š
+		if (dist1 == 1) //if the ship is placed vertically ì „í•¨ì˜ ë°°ì—´ì´ ìˆ˜ì§ì¼Â‹Âš
 		{
 			if (row > row2)
 			{
@@ -938,7 +938,7 @@ void position()
 				}
 			}
 		}
-		else if (dist2 == 1) //if the ship is placed horizontally ÀüÇÔÀÇ ¹èÄ¡°¡ ¼öÆòÀÏ‹š
+		else if (dist2 == 1) //if the ship is placed horizontally ì „í•¨ì˜ ë°°ì¹˜ê°€ ìˆ˜í‰ì¼Â‹Âš
 		{
 			if (column > column2)
 			{
@@ -964,13 +964,13 @@ void position()
 		if ((dist1 == 0 && dist2 == 0) || (dist1 == 1 && dist2 == 1) || found > 0)
 		{
 			system("cls");
-			printf("¡Ú¡Ú¡Ú¡Ú¡Ú¡ÚÇÔ´ë ¹èÄ¡Áß¡Ú¡Ú¡Ú¡Ú¡Ú¡Ú\n\n");
+			printf("â˜…â˜…â˜…â˜…â˜…â˜…í•¨ëŒ€ ë°°ì¹˜ì¤‘â˜…â˜…â˜…â˜…â˜…â˜…\n\n");
 			print_board();
-			printf("ÁÂÇ¥¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä\n\n");
+			printf("ì¢Œí‘œë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”\n\n");
 		}
 	} while ((dist1 == 0 && dist2 == 0) || (dist1 == 1 && dist2 == 1) || found > 0);
 
-	if (dist1 == 1) //if the ship is placed vertically ÀüÇÔÀÇ ¹èÄ¡°¡ ¼öÁ÷
+	if (dist1 == 1) //if the ship is placed vertically ì „í•¨ì˜ ë°°ì¹˜ê°€ ìˆ˜ì§
 	{
 		if (row > row2)
 		{
@@ -987,7 +987,7 @@ void position()
 			}
 		}
 	}
-	else if (dist2 == 1) //if the ship is placed horizontally ÀüÇÔÀÇ ¹èÄ¡°¡ ¼öÆò
+	else if (dist2 == 1) //if the ship is placed horizontally ì „í•¨ì˜ ë°°ì¹˜ê°€ ìˆ˜í‰
 	{
 		if (column > column2)
 		{
@@ -1021,33 +1021,33 @@ int rand_num(int high)
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-void cp_position()  //ÄÄÇ»ÅÍÀÇ À§Ä¡
+void cp_position()  //ì»´í“¨í„°ì˜ ìœ„ì¹˜
 {
 
 	int battleship, aircraft, destroyer, patrol, submarine;
 	int column, row, direction, check;
-	int array[10] = { 0 };//¾î´À ÁÙÀÌ³ª ÇàÀÌ »ç¿ëÇß´ÂÁö ±â·Ï records which row or columns have been used
+	int array[10] = { 0 };//ì–´ëŠ ì¤„ì´ë‚˜ í–‰ì´ ì‚¬ìš©í–ˆëŠ”ì§€ ê¸°ë¡ records which row or columns have been used
 	aircraft = 5;
 	battleship = 4;
 	destroyer = 3;
 	submarine = 3;
 	patrol = 2;
 
-	direction = rand_num(2);// ÀüÇÔÀÇ ¹æÇâÀ» °í¸¥´Ùchoosing the direction of the boats
+	direction = rand_num(2);// ì „í•¨ì˜ ë°©í–¥ì„ ê³ ë¥¸ë‹¤choosing the direction of the boats
 
 
-	if (direction == 0)				//horizontally ¼öÆò
-	{								////////////aircraftÇ×°ø¸ğÇÔ
+	if (direction == 0)				//horizontally ìˆ˜í‰
+	{								////////////aircraftí•­ê³µëª¨í•¨
 		row = rand_num(10);
-		array[row] = 1;				//registers which row has been used ¾î´À ÁÙÀÌ »ç¿ëÇŞ´ÂÁö ±â·Ï
+		array[row] = 1;				//registers which row has been used ì–´ëŠ ì¤„ì´ ì‚¬ìš©í–‡ëŠ”ì§€ ê¸°ë¡
 		column = rand_num(6);
-		while (aircraft > 0)			//lays the ship horizontally ¹è¸¦ ¼öÆòÀ¸·Î ³õ´Ù
+		while (aircraft > 0)			//lays the ship horizontally ë°°ë¥¼ ìˆ˜í‰ìœ¼ë¡œ ë†“ë‹¤
 		{
 			cp_board[row][column] = 65;
 			column++;
 			aircraft--;
 		}
-		////////////battleshipÀüÇÔ
+		////////////battleshipì „í•¨
 		do
 		{
 			check = 0;
@@ -1057,7 +1057,7 @@ void cp_position()  //ÄÄÇ»ÅÍÀÇ À§Ä¡
 				check = 1;
 			}
 		} while (check == 1);
-		//checks whether the row has been used¾î´À ÁÙÀÌ »ç¿ëÇŞ´ÂÁö ±â·Ï
+		//checks whether the row has been usedì–´ëŠ ì¤„ì´ ì‚¬ìš©í–‡ëŠ”ì§€ ê¸°ë¡
 		array[row] = 1;
 		column = rand_num(7);
 		while (battleship > 0)
@@ -1066,7 +1066,7 @@ void cp_position()  //ÄÄÇ»ÅÍÀÇ À§Ä¡
 			column++;
 			battleship--;
 		}
-		//////////////////destroyer ±¸ÃàÇÔ
+		//////////////////destroyer êµ¬ì¶•í•¨
 		do
 		{
 			check = 0;
@@ -1085,7 +1085,7 @@ void cp_position()  //ÄÄÇ»ÅÍÀÇ À§Ä¡
 			column++;
 			destroyer--;
 		}
-		//////////////////submarine Àá¼öÇÔ
+		//////////////////submarine ì ìˆ˜í•¨
 		do
 		{
 			check = 0;
@@ -1104,7 +1104,7 @@ void cp_position()  //ÄÄÇ»ÅÍÀÇ À§Ä¡
 			column++;
 			submarine--;
 		}
-		/////////////////////////patrol ÃÊ°èÁ¤
+		/////////////////////////patrol ì´ˆê³„ì •
 		do
 		{
 			check = 0;
@@ -1125,7 +1125,7 @@ void cp_position()  //ÄÄÇ»ÅÍÀÇ À§Ä¡
 		}
 	}
 	else if (direction == 1)
-	{													//aircraft Ç×°ø¸ğÇÔ
+	{													//aircraft í•­ê³µëª¨í•¨
 		column = rand_num(10);
 		array[column] = 1;
 		row = rand_num(6);
@@ -1135,7 +1135,7 @@ void cp_position()  //ÄÄÇ»ÅÍÀÇ À§Ä¡
 			row++;
 			aircraft--;
 		}
-		//battleship ÀüÇÔ
+		//battleship ì „í•¨
 		do
 		{
 			check = 0;
@@ -1154,7 +1154,7 @@ void cp_position()  //ÄÄÇ»ÅÍÀÇ À§Ä¡
 			row++;
 			battleship--;
 		}
-		//destroyer±¸ÃàÇÔ
+		//destroyerêµ¬ì¶•í•¨
 		do
 		{
 			check = 0;
@@ -1173,7 +1173,7 @@ void cp_position()  //ÄÄÇ»ÅÍÀÇ À§Ä¡
 			row++;
 			destroyer--;
 		}
-		//submarineÀá¼öÇÔ
+		//submarineì ìˆ˜í•¨
 		do
 		{
 			check = 0;
@@ -1192,7 +1192,7 @@ void cp_position()  //ÄÄÇ»ÅÍÀÇ À§Ä¡
 			row++;
 			submarine--;
 		}
-		//patrol ÃÊ°èÁ¤
+		//patrol ì´ˆê³„ì •
 		do
 		{
 			check = 0;
@@ -1335,11 +1335,11 @@ void cp_attack()
 		{
 			row = rand_num(10);
 			column = rand_num(10);
-		} while (cp_attack_check(row, column) == 1 || cp_attack_check(row, column) == 2);		//ÁöÁ¡ÀÌ »ç¿ëµÇ¾ú´ÂÁö Ã¼Å©checks whether the point has been used
+		} while (cp_attack_check(row, column) == 1 || cp_attack_check(row, column) == 2);		//ì§€ì ì´ ì‚¬ìš©ë˜ì—ˆëŠ”ì§€ ì²´í¬checks whether the point has been used
 
 		switch (board[row][column])
 		{
-		case 65://aircraft carrier Ç×°ø¸ğÇÔ
+		case 65://aircraft carrier í•­ê³µëª¨í•¨
 			HIT = 1;
 			strcpy_s(state, 4, "Hit");
 			SHIP = 'A';
@@ -1353,7 +1353,7 @@ void cp_attack()
 				}
 			}
 			break;
-		case 66://battleshipÀüÇÔ
+		case 66://battleshipì „í•¨
 			HIT = 1;
 			strcpy_s(state, 4, "Hit");
 			SHIP = 'B';
@@ -1367,7 +1367,7 @@ void cp_attack()
 				}
 			}
 			break;
-		case 68://destroyer±¸ÃàÇÔ
+		case 68://destroyerêµ¬ì¶•í•¨
 			HIT = 1;
 			strcpy_s(state, 4, "Hit");
 			SHIP = 'D';
@@ -1381,7 +1381,7 @@ void cp_attack()
 				}
 			}
 			break;
-		case 83://submarineÀá¼öÇÔ
+		case 83://submarineì ìˆ˜í•¨
 			HIT = 1;
 			strcpy_s(state, 4, "Hit");
 			SHIP = 'S';
@@ -1395,7 +1395,7 @@ void cp_attack()
 				}
 			}
 			break;
-		case 80://patrol boat ÃÊ°èÇÔ
+		case 80://patrol boat ì´ˆê³„í•¨
 			HIT = 1;
 			strcpy_s(state, 4, "Hit");
 			SHIP = 'P';
@@ -1422,73 +1422,73 @@ void cp_attack()
 		switch (SHIP)
 		{
 		case 'A':
-			HIT++;//increase the hit    hitÁõ°¡
+			HIT++;//increase the hit    hitì¦ê°€
 			strcpy_s(state, 4, "Hit");
-			for (i = 0; i < 5; i++)		//searches for the remaining ship coordinate and attacks it ³²¾ÆÀÖ´Â ÀüÇÔÀ» Ã£°í °ø°İ
+			for (i = 0; i < 5; i++)		//searches for the remaining ship coordinate and attacks it ë‚¨ì•„ìˆëŠ” ì „í•¨ì„ ì°¾ê³  ê³µê²©
 			{
 				if ((A[i][0] != -1) && (A[i][1] != -1))
 				{
-					board[A[i][0]][A[i][1]] = 120;//changes the value in the board º¸µåÀÇ °ªÀ» ¹Ù²Û´Ù
-					A[i][0] = -1;//removes the ship coordinate  ¹èÀÇ ÁÂÇ¥ Áö¿ì±â
-					A[i][1] = -1;//removes the ship coordinate  ¹èÀÇ ÁÂÇ¥ Áö¿ì±â
+					board[A[i][0]][A[i][1]] = 120;//changes the value in the board ë³´ë“œì˜ ê°’ì„ ë°”ê¾¼ë‹¤
+					A[i][0] = -1;//removes the ship coordinate  ë°°ì˜ ì¢Œí‘œ ì§€ìš°ê¸°
+					A[i][1] = -1;//removes the ship coordinate  ë°°ì˜ ì¢Œí‘œ ì§€ìš°ê¸°
 					break;
 				}
 			}
-			if (HIT == 5)	//if the ship is destroyed resets the counter ÀüÇÔÀÌ °ø°İµÇ¾úÀ»‹š Ä«¿îÅÍ ¸®¼Â
+			if (HIT == 5)	//if the ship is destroyed resets the counter ì „í•¨ì´ ê³µê²©ë˜ì—ˆì„Â‹Âš ì¹´ìš´í„° ë¦¬ì…‹
 			{
 				HIT = 0;
 			}
 			break;
 		case 'B':
-			HIT++;//increase the hit °ø°İÁõ°¡
+			HIT++;//increase the hit ê³µê²©ì¦ê°€
 			strcpy_s(state, 4, "Hit");
-			for (i = 0; i < 4; i++) //searches for the remaining ship coordinate and attacks it³²¾ÆÀÖ´Â ÀüÇÔÀ» Ã£°í °ø°İ
+			for (i = 0; i < 4; i++) //searches for the remaining ship coordinate and attacks itë‚¨ì•„ìˆëŠ” ì „í•¨ì„ ì°¾ê³  ê³µê²©
 			{
 				if ((B[i][0] != -1) && (B[i][1] != -1))
 				{
-					board[B[i][0]][B[i][1]] = 120;//changes the value in the boardº¸µåÀÇ °ªÀ» ¹Ù²Û´Ù
-					B[i][0] = -1;//removes the ship coordinate¹èÀÇ ÁÂÇ¥ Áö¿ì±â
-					B[i][1] = -1;//removes the ship coordinate¹èÀÇ ÁÂÇ¥ Áö¿ì±â
+					board[B[i][0]][B[i][1]] = 120;//changes the value in the boardë³´ë“œì˜ ê°’ì„ ë°”ê¾¼ë‹¤
+					B[i][0] = -1;//removes the ship coordinateë°°ì˜ ì¢Œí‘œ ì§€ìš°ê¸°
+					B[i][1] = -1;//removes the ship coordinateë°°ì˜ ì¢Œí‘œ ì§€ìš°ê¸°
 					break;
 				}
 			}
-			if (HIT == 4)	//if the ship is destroyed resets the counterÀüÇÔÀÌ °ø°İµÇ¾úÀ»‹š Ä«¿îÅÍ ¸®¼Â
+			if (HIT == 4)	//if the ship is destroyed resets the counterì „í•¨ì´ ê³µê²©ë˜ì—ˆì„Â‹Âš ì¹´ìš´í„° ë¦¬ì…‹
 			{
 				HIT = 0;
 			}
 			break;
 		case 'D':
-			HIT++;//increase the hit È÷Æ® Áõ°¡
+			HIT++;//increase the hit íˆíŠ¸ ì¦ê°€
 			strcpy_s(state, 4, "Hit");
-			for (i = 0; i < 3; i++) //searches for the remaining ship coordinate and attacks it³²¾ÆÀÖ´Â ÀüÇÔÀ» Ã£°í °ø°İ
+			for (i = 0; i < 3; i++) //searches for the remaining ship coordinate and attacks itë‚¨ì•„ìˆëŠ” ì „í•¨ì„ ì°¾ê³  ê³µê²©
 			{
 				if ((D[i][0] != -1) && (D[i][1] != -1))
 				{
-					board[D[i][0]][D[i][1]] = 120;//changes the value in the boardº¸µåÀÇ °ªÀ» ¹Ù²Û´Ù
-					D[i][0] = -1;//removes the ship coordinate¹èÀÇ ÁÂÇ¥ Áö¿ì±â
-					D[i][1] = -1;//removes the ship coordinate¹èÀÇ ÁÂÇ¥ Áö¿ì±â
+					board[D[i][0]][D[i][1]] = 120;//changes the value in the boardë³´ë“œì˜ ê°’ì„ ë°”ê¾¼ë‹¤
+					D[i][0] = -1;//removes the ship coordinateë°°ì˜ ì¢Œí‘œ ì§€ìš°ê¸°
+					D[i][1] = -1;//removes the ship coordinateë°°ì˜ ì¢Œí‘œ ì§€ìš°ê¸°
 					break;
 				}
 			}
-			if (HIT == 3) //if the ship is destroyed resets the counterÀüÇÔÀÌ °ø°İµÇ¾úÀ»‹š Ä«¿îÅÍ ¸®¼Â
+			if (HIT == 3) //if the ship is destroyed resets the counterì „í•¨ì´ ê³µê²©ë˜ì—ˆì„Â‹Âš ì¹´ìš´í„° ë¦¬ì…‹
 			{
 				HIT = 0;
 			}
 			break;
 		case 'S':
 			strcpy_s(state, 4, "Hit");
-			HIT++;//increase the hit °ø°İÁõ°¡
-			for (i = 0; i < 3; i++) //searches for the remaining ship coordinate and attacks it³²¾ÆÀÖ´Â ÀüÇÔÀ» Ã£°í °ø°İ
+			HIT++;//increase the hit ê³µê²©ì¦ê°€
+			for (i = 0; i < 3; i++) //searches for the remaining ship coordinate and attacks itë‚¨ì•„ìˆëŠ” ì „í•¨ì„ ì°¾ê³  ê³µê²©
 			{
 				if ((S[i][0] != -1) && (S[i][1] != -1))
 				{
-					board[S[i][0]][S[i][1]] = 120;//changes the value in the boardº¸µåÀÇ °ªÀ» ¹Ù²Û´Ù
-					S[i][0] = -1;//removes the ship coordinate¹èÀÇ ÁÂÇ¥ Áö¿ì±â
-					S[i][1] = -1;//removes the ship coordinate¹èÀÇ ÁÂÇ¥ Áö¿ì±â
+					board[S[i][0]][S[i][1]] = 120;//changes the value in the boardë³´ë“œì˜ ê°’ì„ ë°”ê¾¼ë‹¤
+					S[i][0] = -1;//removes the ship coordinateë°°ì˜ ì¢Œí‘œ ì§€ìš°ê¸°
+					S[i][1] = -1;//removes the ship coordinateë°°ì˜ ì¢Œí‘œ ì§€ìš°ê¸°
 					break;
 				}
 			}
-			if (HIT == 3) //if the ship is destroyed resets the counterÀüÇÔÀÌ °ø°İµÇ¾úÀ»‹š Ä«¿îÅÍ ¸®¼Â
+			if (HIT == 3) //if the ship is destroyed resets the counterì „í•¨ì´ ê³µê²©ë˜ì—ˆì„Â‹Âš ì¹´ìš´í„° ë¦¬ì…‹
 			{
 				HIT = 0;
 			}
@@ -1496,17 +1496,17 @@ void cp_attack()
 		case 'P':
 			strcpy_s(state, 4, "Hit");
 			HIT++;//increase the hit
-			for (i = 0; i < 2; i++) //searches for the remaining ship coordinate and attacks it³²¾ÆÀÖ´Â ÀüÇÔÀ» Ã£°í °ø°İ
+			for (i = 0; i < 2; i++) //searches for the remaining ship coordinate and attacks itë‚¨ì•„ìˆëŠ” ì „í•¨ì„ ì°¾ê³  ê³µê²©
 			{
 				if ((P[i][0] != -1) && (P[i][1] != -1))
 				{
-					board[P[i][0]][P[i][1]] = 120;//changes the value in the boardº¸µåÀÇ °ªÀ» ¹Ù²Û´Ù
-					P[i][0] = -1;//removes the ship coordinate¹èÀÇ ÁÂÇ¥ Áö¿ì±â
-					P[i][1] = -1;//removes the ship coordinate¹èÀÇ ÁÂÇ¥ Áö¿ì±â
+					board[P[i][0]][P[i][1]] = 120;//changes the value in the boardë³´ë“œì˜ ê°’ì„ ë°”ê¾¼ë‹¤
+					P[i][0] = -1;//removes the ship coordinateë°°ì˜ ì¢Œí‘œ ì§€ìš°ê¸°
+					P[i][1] = -1;//removes the ship coordinateë°°ì˜ ì¢Œí‘œ ì§€ìš°ê¸°
 					break;
 				}
 			}
-			if (HIT == 2) //if the ship is destroyed resets the counterÀüÇÔÀÌ °ø°İµÇ¾úÀ»‹š Ä«¿îÅÍ ¸®¼Â
+			if (HIT == 2) //if the ship is destroyed resets the counterì „í•¨ì´ ê³µê²©ë˜ì—ˆì„Â‹Âš ì¹´ìš´í„° ë¦¬ì…‹
 			{
 				HIT = 0;
 			}
@@ -1519,22 +1519,22 @@ void attack()
 
 	do
 	{
-		printf("»ç¿ëÀÚÀÇ °ø°İÂ÷·Ê:\n");
+		printf("ì‚¬ìš©ìì˜ ê³µê²©ì°¨ë¡€:\n");
 		do
 		{
-			printf("°¡·Î: ");
+			printf("ê°€ë¡œ: ");
 			scanf_s("%d", &row);
 		} while (row < 1 || row>10);
 
 		do
 		{
-			printf("¼¼·Î: ");
+			printf("ì„¸ë¡œ: ");
 			scanf_s("%d", &column);
 		} while (column < 1 || column>10);
 
 		if (attack_check((row - 1), (column - 1)) == 1 || attack_check((row - 1), (column - 1)) == 2)
 		{
-			printf("ÁÂÇ¥¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.\n\n");
+			printf("ì¢Œí‘œë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n\n");
 		}
 	} while (attack_check((row - 1), (column - 1)) == 1 || attack_check((row - 1), (column - 1)) == 2);//checks whether the point has been used
 
@@ -1562,10 +1562,10 @@ void textcolor(int foreground, int background)
 }
 
 /**
-@brief : ¹®ÀÚ¿­À» Àß¶óÁÖ´Â ÇÔ¼öÀÔ´Ï´Ù.
-@strOrigin : ÀÚ¸¦ µ¥ÀÌÅÍ
-@strTok : ºĞ±âÁÙ µ¥ÀÌÅÍ
-@string : ¹İÈ¯Çü , ¹è¿­·Î ÀÎÀÚÀü´Ş
+@brief : ë¬¸ìì—´ì„ ì˜ë¼ì£¼ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
+@strOrigin : ìë¥¼ ë°ì´í„°
+@strTok : ë¶„ê¸°ì¤„ ë°ì´í„°
+@string : ë°˜í™˜í˜• , ë°°ì—´ë¡œ ì¸ìì „ë‹¬
 */
 string* StringSplit(string strTarget, string strTok)
 {
