@@ -344,7 +344,7 @@ void cp_print_board()
 			case 80:      //80 = 초계정(patrol boat)
 				printf("%3c", 126);
 				break;
-			case 120:     //????
+			case 120:     //X표시 색상바꾸면 X가하나 더 생김
 			case 126:     //????
 			case 46:      //????
 				printf("%3c", cp_board[i][j]);
