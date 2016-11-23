@@ -346,8 +346,14 @@ void cp_print_board()
 				break;
 			case 120:     //X표시 색상바꾸면 X가하나 더 생김
 			case 126:     //????
-			case 46:      //????
+				textcolor(BLUE, BLACK); //이색 으로 바뀜니.
 				printf("%3c", cp_board[i][j]);
+				textcolor(WHITE, BLACK);
+				break;
+			case 46:      //????
+				textcolor(GREEN, BLACK);//이색 으로 바뀜니.
+				printf("%3c", cp_board[i][j]);
+				textcolor(WHITE, BLACK);
 				break;
 			}
 		}
