@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <iostream>
-#include <windows.h> 
+#include <iostream> 
+#include <windows.h> //글자 색상 변경하기위한 해더파일
 #include "sio_client.h"
 
 #define SINGLE_PLAY 1
