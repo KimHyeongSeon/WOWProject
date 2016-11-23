@@ -1540,7 +1540,7 @@ void attack()
 
 		if (attack_check((row - 1), (column - 1)) == 1 || attack_check((row - 1), (column - 1)) == 2)
 		{
-			printf("좌표를 다시 입력해주세요.\n\n");
+			printf("좌표를 다시 입력해주세요.\n\n"); //여
 		}
 	} while (attack_check((row - 1), (column - 1)) == 1 || attack_check((row - 1), (column - 1)) == 2);//checks whether the point has been used
 
