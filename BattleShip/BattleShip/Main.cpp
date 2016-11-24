@@ -68,11 +68,11 @@ int main()
 {
 	textcolor(YELLOW, BLACK);
 	printf("\n\n\n\n\n\n");
-	printf("        XXXXX   XXXX  XXXXXX XXXXXX XX     XXXXXX      XXXXX XX  XX XX XXXX\n");
-	printf("        XX  XX XX  XX   XX     XX   XX     XX         XX     XX  XX XX XX  XX\n");
-	printf("        XXXXX  XX  XX   XX     XX   XX     XXXX        XXXX  XXXXXX XX XXXX\n");
-	printf("        XX  XX XXXXXX   XX     XX   XX     XX             XX XX  XX XX XX\n");
-	printf("        XXXXX  XX  XX   XX     XX   XXXXXX XXXXXX     XXXXX  XX  XX XX XX\n");
+	printf("        ■■■■■   ■■■■  ■■■■■■ ■■■■■■ ■■     ■■■■■■      ■■■■■ ■■  ■■ ■■ ■■■■\n");
+	printf("        ■■  ■■ ■■  ■■   ■■     ■■   ■■     ■■         ■■     ■■  ■■ ■■ ■■  ■■\n");
+	printf("        ■■■■■  ■■  ■■   ■■     ■■   ■■     ■■■■        ■■■■  ■■■■■■ ■■ ■■■■\n");
+	printf("        ■■  ■■ ■■■■■■   ■■     ■■   ■■     ■■             ■■ ■■  ■■ ■■ ■■\n");
+	printf("        ■■■■■  ■■  ■■   ■■     ■■   ■■■■■  ■■■■■■     ■■■■■  ■■  ■■ ■■ ■■\n");
 	printf("\n\n\n\n");
 	textcolor(WHITE, BLACK);
 
