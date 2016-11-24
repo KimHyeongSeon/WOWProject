@@ -306,8 +306,36 @@ void print_board()
 	{
 		printf("%3d", (i + 1));
 		for (j = 0; j < 10; j++)
-		{
-			printf("%3c", board[i][j]);
+		{			
+
+			switch (board[i][j])
+			{
+			case 65:      //65 = 항공모함(aircraft carrier) 
+			case 66:      //66 = 전함(battleship)
+			case 68:      //68 = 구축함(destroyer)
+			case 83:      //83 = 잠수함(submarine)
+			case 80:      //80 = 초계정(patrol boat)								
+				printf("%3c", board[i][j]);
+				break;
+			case 120:     //????
+				textcolor(RED, BLACK);
+				printf("%3c", board[i][j]);
+				textcolor(WHITE, BLACK);
+			case 126:     //????
+				if (board[i][j] == 'x')
+				{
+					break;
+				}
+				textcolor(BLUE, BLACK);
+				printf("%3c", board[i][j]);
+				textcolor(WHITE, BLACK);
+				break;
+			case 46:      //????
+				textcolor(GREEN, BLACK);
+				printf("%3c", board[i][j]);
+				textcolor(WHITE, BLACK);
+				break;
+			}
 		}
 		printf("\n");
 	}
