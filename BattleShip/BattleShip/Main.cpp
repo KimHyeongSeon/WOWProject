@@ -341,17 +341,26 @@ void cp_print_board()
 			case 66:      //66 = 전함(battleship)
 			case 68:      //68 = 구축함(destroyer)
 			case 83:      //83 = 잠수함(submarine)
-			case 80:      //80 = 초계정(patrol boat)
-				printf("%3c", 126);  //여기서 프린트되는데 밑에서도 프린트해서 X가 두번뜨네요 다르게 프린트하는 방법 알아보겟습니다.
+			case 80:      //80 = 초계정(patrol boat)				
+				textcolor(BLUE, BLACK);  //ship color change
+				printf("%3c", 126);
+				textcolor(WHITE, BLACK);
 				break;
-			case 120:     //X표시 색상바꾸면 X가하나 더 생김 오류 원인분석완
-			case 126:     //????
-				textcolor(BLUE, BLACK); //이색 으로 바뀜니.
+			case 120:     //X(120) color change
+				textcolor(RED, BLACK);
+				printf("%3c", cp_board[i][j]);
+				textcolor(WHITE, BLACK);
+			case 126:     //board color change
+				if (cp_board[i][j] == 'x')
+				{
+					break;
+				}
+				textcolor(BLUE, BLACK);
 				printf("%3c", cp_board[i][j]);
 				textcolor(WHITE, BLACK);
 				break;
-			case 46:      //????
-				textcolor(GREEN, BLACK);//이색 으로 바뀜니.
+			case 46:      //
+				textcolor(GREEN, BLACK);
 				printf("%3c", cp_board[i][j]);
 				textcolor(WHITE, BLACK);
 				break;
