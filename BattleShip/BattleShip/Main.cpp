@@ -5,7 +5,7 @@
 #include <windows.h> //글자 색상 변경하기위한 해더파일
 #include <mmsystem.h>
 #include "sio_client.h"
-#pragma comment(lib,"winmm")
+#pragma comment(lib,"winmm")//lib파일 부르
 
 #define SINGLE_PLAY 1
 #define MULTI_PLAY 2
