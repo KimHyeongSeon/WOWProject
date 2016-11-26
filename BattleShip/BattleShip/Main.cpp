@@ -5,7 +5,7 @@
 #include <windows.h> //글자 색상 변경하기위한 해더파일
 #include <mmsystem.h>
 #include "sio_client.h"
-#pragma comment(lib,"winmm")//lib파일 부르
+#pragma comment(lib,"winmm")//lib파일 부
 
 #define SINGLE_PLAY 1
 #define MULTI_PLAY 2
@@ -82,7 +82,7 @@ int main()
 	printf("입력 : ");
 	PlaySound(TEXT("C:\\User\\home\\Desktop\\battle_BGM.wav"),NULL,SND_FILENAME|SND_ASYNC|SND_LOOP);//배경음악 
 	scanf("%d", &multiPlayCheck); // 싱글플레이, 멀티플레이 선택 
-        PlaySound(NULL,0,0);//음악
+        PlaySound(NULL,0,0);//음악꺼
 	if (multiPlayCheck == SINGLE_PLAY) {  // 싱글플레이일경우
 		int turn_count = 1;
 		//player
