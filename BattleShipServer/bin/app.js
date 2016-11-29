@@ -36,7 +36,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('JoinRoom', function (data) {
-        var room = roomList[data]; // 예외처리 해야함
+        var room = roomList[data]; 
         if (room != null) {
             if (room.progress) {
 
@@ -69,11 +69,36 @@ io.on('connection', function (socket) {
                     console.log("SUC");
                     io.sockets.emit('SetPostionDone' + room.userSessionId, bordData);
                     io.sockets.emit('SetPostionDone' + room.masterSessionId, bordData);
+                   
                 }
 
             } else {
                 //방에 문제가있을경우 예외처리
             }
+        }
+
+    });
+
+    socket.on('Attack', function(data){
+        console.log(data);
+        var splitData = data.split('.');
+        var roomIndex = splitData[0];
+        var attackData = splitData[1];
+
+        if(attackData[0] == 100){
+          //보낸 유저가 이긴 이밴트처리
+        }
+
+        var room = roomList[data]; 
+        if (room != null) {
+            var masterCheck = (room.masterSessionId == socket.id);
+            if(masterCheck){
+              io.sockets.emit('AttackRes' + room.userSessionId, attackData);
+            }else {
+               io.sockets.emit('AttackRes' + room.masterSessionId, attackData);
+            }
+        }else{
+          // 예외처리
         }
 
     });
