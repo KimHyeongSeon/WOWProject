@@ -50,7 +50,7 @@ int victory_check();//사용자가 이겼는지 확인
 int cp_victory_check();//컴퓨터가 이겼는지 확인
 void ship_coordinates();//goes through the board and records the player's ship coordinates
 int distance_check(int a, int b, int num);//확인한다 보트의 위치가 유효한지 맞으면 1, 아니면 0 
-void multplay_attack()//멀티플레이 상대방 공격
+void multiplay_attack();//멀티플레이 상대방 공격
 void textcolor(int foreground, int background); //텍스트 컬러 변경 함수
 										  //전역함수
 int board[10][10];
@@ -186,8 +186,8 @@ int main()
 		h.socket() -> on("attackRes",[&](sio::event& ev)
 		{
 			string resMsg = ev.get_messages()[0]->get_string();
-			resMsg.at;
-			enemy_attack(,);
+			//resMsg.at;
+			//enemy_attack(,);
 
 		});
 
@@ -230,7 +230,7 @@ void multi_play()
 		cout << "\n 양측의 배치가 완료되어 게임을 시작합니다.";
 
 		if(masterCheck == 1){
-			multiplay_
+			multiplay_attack();
 		}
 	});
 
@@ -1843,7 +1843,7 @@ void multiplay_attack()
 		row = 100;
 	}
 
-	string msg = roomIndex + "."+ row - 1 + "/" + column - 1;
+	string msg = roomIndex + "." + (char *)(row - 1) + "/" + (char *)(column - 1);
 	h.socket()->emit("attack", msg);
 }
 
