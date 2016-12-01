@@ -82,7 +82,7 @@ int main()
 
 	printf("1. 싱글 플레이 \n2. 멀티 플레이\n3. 정보\n");
 	printf("입력 : ");
-	PlaySound(TEXT("C:\\User\\home\\Desktop\\battle_BGM.wav"),NULL,SND_FILENAME|SND_ASYNC|SND_LOOP);//배경음악 
+	PlaySound(TEXT("C:\\Users\\swpc\\Desktop\\WOWProject-master\\BattleShip\\BGM\\battle_BGM.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);//main sound
 	scanf("%d", &multiPlayCheck); // 싱글플레이, 멀티플레이 선택 
         PlaySound(NULL,0,0);//음악꺼
 	if (multiPlayCheck == SINGLE_PLAY) {  // 싱글플레이일경우
@@ -1781,6 +1781,7 @@ void attack()
 		{
 			printf("좌표를 다시 입력해주세요.\n\n"); //여
 		}
+		PlaySound(TEXT("C:\\Users\\swpc\\Desktop\\WOWProject-master\\BattleShip\\BGM\\sound_bom short.wav"), NULL, SND_FILENAME | SND_ASYNC);//boom_sound
 	} while (attack_check((row - 1), (column - 1)) == 1 || attack_check((row - 1), (column - 1)) == 2);//checks whether the point has been used
 
 	switch (cp_board[row - 1][column - 1])
