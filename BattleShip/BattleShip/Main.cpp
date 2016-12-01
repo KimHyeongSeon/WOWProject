@@ -50,6 +50,7 @@ int victory_check();//사용자가 이겼는지 확인
 int cp_victory_check();//컴퓨터가 이겼는지 확인
 void ship_coordinates();//goes through the board and records the player's ship coordinates
 int distance_check(int a, int b, int num);//확인한다 보트의 위치가 유효한지 맞으면 1, 아니면 0 
+void multiplay_attack();//멀티플레이 상대방 공격
 void textcolor(int foreground, int background); //텍스트 컬러 변경 함수
 										  //전역함수
 int board[10][10];
@@ -63,6 +64,7 @@ int HIT = 0, row, column;
 char SHIP;
 char state[6];//컴퓨터가 공격하거나 놓칠 말한다.
 int multiPlayCheck;
+int masterCheck = 0;
 string roomIndex;// 멀티플레이 접속한 방의 인덱스
 sio::client h; // 멀티플레이에 쓰이는 socket.io 클라이언트.
 
@@ -136,7 +138,6 @@ int main()
 
 		h.socket()->on("GetRoomListRes", [&](sio::event& ev)  // 방목록 가져오기 콜백 이벤트
 		{
-
 			cout << ev.get_messages()[0]->get_string(); // 방명단 출력
 
 			cout << "\n 접속하실 방의 번호를 입력해주세요.";
@@ -152,8 +153,6 @@ int main()
 			h.socket()->emit("JoinRoom", roomIndex);
 
 		});
-
-		
 
 		int flag;
 
@@ -178,11 +177,19 @@ int main()
 				cout << "\n 상대방이 접속하여 게임을 시작합니다.";
 				multi_play();
 			});
-
+			masterCheck = 1;
 			h.socket()->emit("CreateRoom", roomName); // 서버에 통신.
 			
 			cout << "상대방이 접속할때까지 기다리십시오.";
 		}
+
+		h.socket() -> on("attackRes",[&](sio::event& ev)
+		{
+			string resMsg = ev.get_messages()[0]->get_string();
+			//resMsg.at;
+			//enemy_attack(,);
+
+		});
 
 		while (true) {
 			Sleep(200); // 리소스 부하 방지
@@ -222,8 +229,10 @@ void multi_play()
 
 		cout << "\n 양측의 배치가 완료되어 게임을 시작합니다.";
 
+		if(masterCheck == 1){
+			multiplay_attack();
+		}
 	});
-
 
 	h.socket()->emit("SetPostionDone", msg);
 	cout << "상대방의 전함배치를 기다려주세요.";
@@ -1560,9 +1569,199 @@ void cp_attack()
 		}
 	}
 }
+
+void enemy_attack(int row, int column){
+	int i;
+
+	switch (HIT)
+	{
+
+	case 0://when not hit
+		do
+		{
+		
+		} while (cp_attack_check(row, column) == 1 || cp_attack_check(row, column) == 2);		//지점이 사용되었는지 체크checks whether the point has been used
+
+		switch (board[row][column])
+		{
+		case 65://aircraft carrier 항공모함
+			HIT = 1;
+			strcpy_s(state, 4, "Hit");
+			SHIP = 'A';
+			board[row][column] = 120;
+			for (i = 0; i < 5; i++)
+			{
+				if ((A[i][0] == row) && (A[i][1] == column))
+				{
+					A[i][0] = -1;
+					A[i][1] = -1;
+				}
+			}
+			break;
+		case 66://battleship전함
+			HIT = 1;
+			strcpy_s(state, 4, "Hit");
+			SHIP = 'B';
+			board[row][column] = 120;
+			for (i = 0; i < 4; i++)
+			{
+				if ((B[i][0] == row) && (B[i][1] == column))
+				{
+					B[i][0] = -1;
+					B[i][1] = -1;
+				}
+			}
+			break;
+		case 68://destroyer구축함
+			HIT = 1;
+			strcpy_s(state, 4, "Hit");
+			SHIP = 'D';
+			board[row][column] = 120;
+			for (i = 0; i < 3; i++)
+			{
+				if ((D[i][0] == row) && (D[i][1] == column))
+				{
+					D[i][0] = -1;
+					D[i][1] = -1;
+				}
+			}
+			break;
+		case 83://submarine잠수함
+			HIT = 1;
+			strcpy_s(state, 4, "Hit");
+			SHIP = 'S';
+			board[row][column] = 120;
+			for (i = 0; i < 3; i++)
+			{
+				if ((S[i][0] == row) && (S[i][1] == column))
+				{
+					S[i][0] = -1;
+					S[i][1] = -1;
+				}
+			}
+			break;
+		case 80://patrol boat 초계함
+			HIT = 1;
+			strcpy_s(state, 4, "Hit");
+			SHIP = 'P';
+			board[row][column] = 120;
+			for (i = 0; i < 2; i++)
+			{
+				if ((P[i][0] == row) && (P[i][1] == column))
+				{
+					P[i][0] = -1;
+					P[i][1] = -1;
+				}
+			}
+			break;
+		case 126:           //???????????
+			board[row][column] = 46;
+			strcpy_s(state, 5, "Miss");
+			break;
+		}
+		break;
+	case 1:
+	case 2:
+	case 3:
+	case 4://when hit
+		switch (SHIP)
+		{
+		case 'A':
+			HIT++;//increase the hit    hit증가
+			strcpy_s(state, 4, "Hit");
+			for (i = 0; i < 5; i++)		//searches for the remaining ship coordinate and attacks it 남아있는 전함을 찾고 공격
+			{
+				if ((A[i][0] != -1) && (A[i][1] != -1))
+				{
+					board[A[i][0]][A[i][1]] = 120;//changes the value in the board 보드의 값을 바꾼다
+					A[i][0] = -1;//removes the ship coordinate  배의 좌표 지우기
+					A[i][1] = -1;//removes the ship coordinate  배의 좌표 지우기
+					break;
+				}
+			}
+			if (HIT == 5)	//if the ship is destroyed resets the counter 전함이 공격되었을 카운터 리셋
+			{
+				HIT = 0;
+			}
+			break;
+		case 'B':
+			HIT++;//increase the hit 공격증가
+			strcpy_s(state, 4, "Hit");
+			for (i = 0; i < 4; i++) //searches for the remaining ship coordinate and attacks it남아있는 전함을 찾고 공격
+			{
+				if ((B[i][0] != -1) && (B[i][1] != -1))
+				{
+					board[B[i][0]][B[i][1]] = 120;//changes the value in the board보드의 값을 바꾼다
+					B[i][0] = -1;//removes the ship coordinate배의 좌표 지우기
+					B[i][1] = -1;//removes the ship coordinate배의 좌표 지우기
+					break;
+				}
+			}
+			if (HIT == 4)	//if the ship is destroyed resets the counter전함이 공격되었을 카운터 리셋
+			{
+				HIT = 0;
+			}
+			break;
+		case 'D':
+			HIT++;//increase the hit 히트 증가
+			strcpy_s(state, 4, "Hit");
+			for (i = 0; i < 3; i++) //searches for the remaining ship coordinate and attacks it남아있는 전함을 찾고 공격
+			{
+				if ((D[i][0] != -1) && (D[i][1] != -1))
+				{
+					board[D[i][0]][D[i][1]] = 120;//changes the value in the board보드의 값을 바꾼다
+					D[i][0] = -1;//removes the ship coordinate배의 좌표 지우기
+					D[i][1] = -1;//removes the ship coordinate배의 좌표 지우기
+					break;
+				}
+			}
+			if (HIT == 3) //if the ship is destroyed resets the counter전함이 공격되었을 카운터 리셋
+			{
+				HIT = 0;
+			}
+			break;
+		case 'S':
+			strcpy_s(state, 4, "Hit");
+			HIT++;//increase the hit 공격증가
+			for (i = 0; i < 3; i++) //searches for the remaining ship coordinate and attacks it남아있는 전함을 찾고 공격
+			{
+				if ((S[i][0] != -1) && (S[i][1] != -1))
+				{
+					board[S[i][0]][S[i][1]] = 120;//changes the value in the board보드의 값을 바꾼다
+					S[i][0] = -1;//removes the ship coordinate배의 좌표 지우기
+					S[i][1] = -1;//removes the ship coordinate배의 좌표 지우기
+					break;
+				}
+			}
+			if (HIT == 3) //if the ship is destroyed resets the counter전함이 공격되었을 카운터 리셋
+			{
+				HIT = 0;
+			}
+			break;
+		case 'P':
+			strcpy_s(state, 4, "Hit");
+			HIT++;//increase the hit
+			for (i = 0; i < 2; i++) //searches for the remaining ship coordinate and attacks it남아있는 전함을 찾고 공격
+			{
+				if ((P[i][0] != -1) && (P[i][1] != -1))
+				{
+					board[P[i][0]][P[i][1]] = 120;//changes the value in the board보드의 값을 바꾼다
+					P[i][0] = -1;//removes the ship coordinate배의 좌표 지우기
+					P[i][1] = -1;//removes the ship coordinate배의 좌표 지우기
+					break;
+				}
+			}
+			if (HIT == 2) //if the ship is destroyed resets the counter전함이 공격되었을 카운터 리셋
+			{
+				HIT = 0;
+			}
+			break;
+		}
+	}
+}
+
 void attack()
 {
-
 	do
 	{
 		printf("사용자의 공격차례:\n");
@@ -1599,6 +1798,53 @@ void attack()
 		strcpy_s(state, 5, "miss");
 		break;
 	}
+}
+
+void multiplay_attack()
+{		
+	do
+	{	
+		printf("사용자의 공격차례:\n");
+		do
+		{
+			printf("가로: ");
+			scanf_s("%d", &row);
+		} while (row < 1 || row>10);
+
+		do
+		{
+			printf("세로: ");
+			scanf_s("%d", &column);
+		} while (column < 1 || column>10);
+
+		if (attack_check((row - 1), (column - 1)) == 1 || attack_check((row - 1), (column - 1)) == 2)
+		{
+			printf("좌표를 다시 입력해주세요.\n\n"); //여
+		}
+	} while (attack_check((row - 1), (column - 1)) == 1 || attack_check((row - 1), (column - 1)) == 2);//checks whether the point has been used
+
+	switch (cp_board[row - 1][column - 1])
+	{
+	case 65:
+	case 66:
+	case 68:
+	case 83:
+	case 80:
+		cp_board[row - 1][column - 1] = 120;
+		strcpy_s(state, 4, "hit");
+		break;
+	case 126:
+		cp_board[row - 1][column - 1] = 46;
+		strcpy_s(state, 5, "miss");
+		break;
+	}
+
+	if(victory_check() == 0){
+		row = 100;
+	}
+
+	string msg = roomIndex + "." + (char *)(row - 1) + "/" + (char *)(column - 1);
+	h.socket()->emit("attack", msg);
 }
 
 void textcolor(int foreground, int background)
