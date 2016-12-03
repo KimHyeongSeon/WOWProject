@@ -338,7 +338,7 @@ void print_board()
 				{
 					break;
 				}
-				textcolor(BLUE, BLACK);
+				textcolor(LIGHTBLUE, BLACK);
 				printf("%3c", board[i][j]);
 				textcolor(WHITE, BLACK);
 				break;
@@ -382,7 +382,7 @@ void cp_print_board()
 			case 68:      //68 = 구축함(destroyer)
 			case 83:      //83 = 잠수함(submarine)
 			case 80:      //80 = 초계정(patrol boat)				
-				textcolor(BLUE, BLACK);  //ship color change
+				textcolor(LIGHTBLUE, BLACK);  //ship color change
 				printf("%3c", 126);
 				textcolor(WHITE, BLACK);
 				break;
@@ -395,7 +395,7 @@ void cp_print_board()
 				{
 					break;
 				}
-				textcolor(BLUE, BLACK);
+				textcolor(LIGHTBLUE, BLACK);
 				printf("%3c", cp_board[i][j]);
 				textcolor(WHITE, BLACK);
 				break;
