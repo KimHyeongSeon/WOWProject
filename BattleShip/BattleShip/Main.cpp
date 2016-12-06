@@ -82,7 +82,7 @@ int main()
 
 	printf("1. 싱글 플레이 \n2. 멀티 플레이\n3. 정보\n");
 	printf("입력 : ");
-	PlaySound(TEXT("C:\\User\\home\\Desktop\\battle_BGM.wav"),NULL,SND_FILENAME|SND_ASYNC|SND_LOOP);//배경음악 
+	PlaySound(TEXT(".\\bgm\\battle_BGM.wav"),NULL,SND_FILENAME|SND_ASYNC|SND_LOOP);//배경음악 
 	scanf("%d", &multiPlayCheck); // 싱글플레이, 멀티플레이 선택 
         PlaySound(NULL,0,0);//음악꺼
 	if (multiPlayCheck == SINGLE_PLAY) {  // 싱글플레이일경우
