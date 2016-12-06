@@ -36,7 +36,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('JoinRoom', function (data) {
-        var room = roomList[data]; 
+        var room = roomList[data];
         if (room != null) {
             if (room.progress) {
 
@@ -49,7 +49,7 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('SetPostionDone', function (data) {
+    socket.on('SetPositionDone', function (data) {
         var splitData = data.split('.');
         var roomIndex = splitData[0];
         var bordData = splitData[1];
@@ -67,42 +67,51 @@ io.on('connection', function (socket) {
                 var posReadyCheck = room.masterPosCheck && room.userPosCheck;
                 if (posReadyCheck) {
                     console.log("SUC");
-                    io.sockets.emit('SetPostionDone' + room.userSessionId, bordData);
-                    io.sockets.emit('SetPostionDone' + room.masterSessionId, bordData);
-                   
+                    io.to(room.userSessionId).emit("SetPositionDoneRes", bordData);
+                    io.to(room.masterSessionId).emit("SetPositionDoneRes", bordData);
                 }
 
             } else {
-                //방에 문제가있을경우 예외처리
             }
         }
 
     });
 
-    socket.on('Attack', function(data){
+    socket.on('Attack', function (data) {
         console.log(data);
         var splitData = data.split('.');
         var roomIndex = splitData[0];
         var attackData = splitData[1];
 
-        if(attackData[0] == 100){
-          //보낸 유저가 이긴 이밴트처리
-        }
 
-        var room = roomList[data]; 
+        var room = roomList[roomIndex];
         if (room != null) {
             var masterCheck = (room.masterSessionId == socket.id);
-            if(masterCheck){
-              io.sockets.emit('AttackRes' + room.userSessionId, attackData);
-            }else {
-               io.sockets.emit('AttackRes' + room.masterSessionId, attackData);
+            if (masterCheck) {
+                if (attackData[0] == 100) {
+                    io.to(room.masterSessionId).emit('Win');
+                    io.to(room.userSessionId).emit('Lose');
+                } else {
+                    io.to(room.userSessionId).emit('AttackRes', attackData);
+                }
+
+            } else {
+                if (attackData[0] == 100) {
+                    io.to(room.userSessionId).emit('Win');
+                    io.to(room.masterSessionId).emit('Lose');
+                }
+                else {
+                    io.to(room.masterSessionId).emit('AttackRes', attackData);
+                }
+
             }
-        }else{
-          // 예외처리
+        } else {
+            // 예외처리
         }
 
     });
 });
+
 
 function Room(roomName, masterSessionId) {
     this.roomName = roomName;
