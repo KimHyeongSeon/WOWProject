@@ -10,7 +10,7 @@
 #define SINGLE_PLAY 1
 #define MULTI_PLAY 2
 
-#define SERVER_ADDRESS "http://127.0.0.1:80"
+#define SERVER_ADDRESS "http://210.119.32.233:80"
 
 #define BLACK 0 
 #define BLUE 1 
@@ -199,19 +199,19 @@ int main()
 		h.socket() -> on("AttackRes",[&](sio::event& ev)
 		{
 			string resMsg = ev.get_messages()[0]->get_string();
-			//resMsg.at;
-			int row = resMsg.at(0) - 1;
-			int column = resMsg.at(2) - 1;
 			
+			char row = resMsg.at(0);
+			char column = resMsg.at(2);
 		
-
 			cp_attack(row,column);
 			system("cls");
-			printf("상대방의 턴 %d: (%d,%d) %s \n\n", turn_count, (row + 1), (column + 1), state);
+			printf("상대방의 턴 %d: (%c,%c) %s \n\n", turn_count, row, column, state);
 			print_board();
 
 			turn_count++;
-	
+
+			printf("사용자의 턴 %d:\n\n", turn_count);
+			cp_print_board();
 			multiplay_attack();
 			
 		});
@@ -255,7 +255,9 @@ void multi_play()
 		cout << "\n 양측의 배치가 완료되어 게임을 시작합니다.\n";
 
 		if(masterCheck == 1){
-			cp_print_board();
+			printf("사용자의 턴 %d:\n\n", turn_count);
+			cp_print_board();	
+	
 			multiplay_attack();
 		}
 	});
@@ -1998,6 +2000,7 @@ void attack()
 		{
 			printf("좌표를 다시 입력해주세요.\n\n"); //여
 		}
+		PlaySound(TEXT(".\\bgm\\sound_bom_short.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	} while (attack_check((row - 1), (column - 1)) == 1 || attack_check((row - 1), (column - 1)) == 2);//checks whether the point has been used
 
 	switch (cp_board[row - 1][column - 1])
@@ -2063,7 +2066,7 @@ void multiplay_attack()
 	string msg = roomIndex + ".";
 	msg.append(to_string(row-1)+ "/" + to_string(column -1));
 	h.socket()->emit("Attack", msg);
-
+	PlaySound(TEXT(".\\bgm\\sound_bom_short.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	cout << "상대방의 공격을 기다려주세요.";
 }
 
@@ -2073,31 +2076,3 @@ void textcolor(int foreground, int background)
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
-/**
-@brief : 문자열을 잘라주는 함수입니다.
-@strOrigin : 자를 데이터
-@strTok : 분기줄 데이터
-@string : 반환형 , 배열로 인자전달
-*/
-string* StringSplit(string strTarget, string strTok)
-{
-	int     nCutPos;
-	int     nIndex = 0;
-	string* strResult = new string[100];
-	
-	while ((nCutPos = strTarget.find_first_of(strTok)) != strTarget.npos)
-	{
-		if (nCutPos > 0)
-		{
-			strResult[nIndex++] = strTarget.substr(0, nCutPos);
-		}
-		strTarget = strTarget.substr(nCutPos + 1);
-	}
-
-	if (strTarget.length() > 0)
-	{
-		strResult[nIndex++] = strTarget.substr(0, nCutPos);
-	}
-
-	return strResult;
-}
