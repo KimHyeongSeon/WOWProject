@@ -199,9 +199,9 @@ int main()
 		h.socket() -> on("AttackRes",[&](sio::event& ev)
 		{
 			string resMsg = ev.get_messages()[0]->get_string();
-			//resMsg.at;
-			char row = resMsg.at(0) - 1;
-			char column = resMsg.at(2) - 1;
+			
+			char row = resMsg.at(0);
+			char column = resMsg.at(2);
 		
 			cp_attack(row,column);
 			system("cls");
