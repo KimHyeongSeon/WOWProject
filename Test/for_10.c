@@ -21,4 +21,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 		printf("\n");
 	}
+	
+	system ("pause");
+	return 0;	
 }
