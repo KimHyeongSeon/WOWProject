@@ -1,1 +1,0 @@
-int _tmain(int argc, _TCHAR* argv[]){ int start, end; int result; printf("처음숫자와 끝숫자를 입력하세요 : "); scanf("%d %d", &start, &end);  for(result=0;start<=end;start++) {  result+=start; }  printf("검색한 숫자까지의합은 %d입니다.", result);  system("pause"); return 0;}
