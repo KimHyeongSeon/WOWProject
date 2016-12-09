@@ -1,1 +1,22 @@
-int _tmain(int argc, _TCHAR* argv[]){ int a; int b=0; int factorial=1; a=1; while(a<=10) {  b+=a;  factorial*=a;  a++; } printf("1~10의 합 : %d\n", b); printf("1~10의 곱 : %d\n", factorial); system("pause"); return 0;}
+#include "stdlib.h"
+#include "stdafx.h"
+
+int _tmain(int argc, _TCHAR* argv[])
+{ 
+  int a; 
+  int b=0;
+  int factorial=1;
+  a=1;
+  while(a<=10) 
+  {
+    b+=a; 
+    factorial*=a; 
+    a++; 
+  } 
+  
+  printf("1~10의 합 : %d\n", b); 
+  printf("1~10의 곱 : %d\n", factorial); 
+  
+  system("pause"); 
+  return 0;
+}
