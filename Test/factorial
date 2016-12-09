@@ -1,0 +1,1 @@
+int _tmain(int argc, _TCHAR* argv[]){ int a, b; int c=1;    printf("정수를 입력하세요. : "); scanf("%d", &a); for(b=1; b<=a; b++)  c=c*b;     printf("%d! : %d\n", a, c);  system("pause"); return 0;}
