@@ -3,15 +3,17 @@
 
 int main()
 {
-int a, b;
+  int a, b;
 
-for(b=9;b>0;b--)
-{
-for(a=9;a>1;a--)
-printf("%dX%d=%2d ", a, b, a*b);
-printf("\n")
-}
+  for(b=9;b>0;b--)
+  {
+    for(a=9;a>1;a--)
+    {
+      printf("%dX%d=%2d ", a, b, a*b);
+    }
+    printf("\n")
+  }
 
-system("pause");
-return 0;
+  system("pause");
+  return 0;
 }
