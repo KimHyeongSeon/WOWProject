@@ -1,0 +1,12 @@
+#include "stdlib.h"
+#include "stdafx.h"
+int _tmain(int argc, _TCHAR* argv[])
+{
+int i; i=1; 
+do    
+printf("%d", i++);
+while(i<=10); 
+printf("\n");
+system("pause"); 
+return 0;
+}
