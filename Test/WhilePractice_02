@@ -1,0 +1,18 @@
+#include "stdlib.h"
+#include "stdafx.h"
+
+int _tmain(int argc, _TCHAR* argv[])
+{ 
+int a = 10; 
+int b = 0; 
+while(a<20) 
+{ 
+printf("a=%d\n", a);
+a++;
+}
+while(b)
+{ 
+printf("b \n");
+} 
+system("pause"); 
+return 0;}
