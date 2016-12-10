@@ -11,6 +11,8 @@ int main()
 			{
 				printf("*");
 			}
+			
+			printf("\n");
 		}
 		else
 		{
