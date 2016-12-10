@@ -2,21 +2,23 @@
 #include "stdlib.h"
 
 
-
 void main()
 {
 	int key=1, i = 0, j;
 	int in[10];
+	
 	while (key != 4)
 	{
 		printf("10개까지 수를 입력받고 출력하는 프로그램입니다.\n");
 		printf("1.입력 2.입력된수출력 3.삭제 4.나가기\n");
 		scanf("%d", &key);
+		
 		if (key != 1 && key != 2 && key != 3 && key != 4)
 		{
 			printf("잘못입력하셨습니다.\n");
 			return;
 		}
+		
 		switch (key)
 		{
 		case 1:
@@ -42,7 +44,9 @@ void main()
 			break;
 		case 3:
 			if (i == 0)
+			{
 				printf("입력된 수가 없습니다.\n");
+			}
 			else
 			{
 				printf("가장 최근의 수를 삭제합니다.\n");
