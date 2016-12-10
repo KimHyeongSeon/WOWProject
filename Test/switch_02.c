@@ -13,11 +13,13 @@ void main()
 		printf("10개까지 수를 입력받아 4칙연산을 실행하는 프로그램입니다.\n");
 		printf("1.입력 2.전체삭제 3.계산결과 출력 4.나가기\n");
 		scanf("%d", &key);
+		
 		if (key != 1 && key != 2 && key != 3 && key != 4)
 		{
 			printf("잘못입력하셨습니다.\n");
 			return;
 		}
+		
 		switch (key)
 		{
 		case 1:
@@ -39,6 +41,7 @@ void main()
 					printf("잘못입력하셨습니다.\n");
 					break;
 				}
+				
 				switch (key2)
 				{
 				case '+':
