@@ -28,5 +28,7 @@ int main()
 		
 	}
 	printf("%d 는 소수입니다.\n",s);
+	
+	
 	return 0;
 }
