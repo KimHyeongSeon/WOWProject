@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "stdlib.h"
 
-
-
 void main()
 {
 	int h, p, i;
@@ -16,7 +14,9 @@ void main()
 	for (p = 1; p <= h; p++)
 	{
 		for (i = 1; i <= p; i++)
+		{
 			printf("*");
+		}
 		printf("\n");
 	}
 }
