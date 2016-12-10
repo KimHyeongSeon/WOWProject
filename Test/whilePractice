@@ -1,0 +1,1 @@
+int _tmain(int argc, _TCHAR* argv[]){ int a=2; int b=0; while(a<10) {  b=1;  while(b<10)  {   printf("%dX%d=%d \n", a, b, a*b);   b++;  }  a++; } system("pause"); return 0;}
