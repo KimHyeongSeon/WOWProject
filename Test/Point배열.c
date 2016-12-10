@@ -6,33 +6,7 @@ int plus(int, int);
 int minus(int, int);
 int multiply(int, int);
 int divide(int, int);
-
-int get_operator()
-{
-  int choice;  
-  while(1)    
-  {
-    printf("=======================\n");
-    printf("0 : for plus\n");   
-    printf("1 : for minus\n");
-    printf("2 : for multiply\n");  
-    printf("3 : for divide\n");   
-    printf("4 : for quit\n");   
-    printf("=======================\n");
-    printf("Please Enter operator: ");
-    scanf("%d", &choice);     
-    
-    if((choice >= 0) && (choice <=4))   
-    {      
-      return (choice);   
-    }     
-    else 
-    {
-      printf("Wrong Input, enter again!\n");    
-    }  
-  }
-  return 0;
-}
+int get_operator();
 
 int main()
 {
@@ -79,3 +53,30 @@ int main()
   {
     return (n1/n2);
   }
+
+int get_operator()
+{
+  int choice;  
+  while(1)    
+  {
+    printf("=======================\n");
+    printf("0 : for plus\n");   
+    printf("1 : for minus\n");
+    printf("2 : for multiply\n");  
+    printf("3 : for divide\n");   
+    printf("4 : for quit\n");   
+    printf("=======================\n");
+    printf("Please Enter operator: ");
+    scanf("%d", &choice);     
+    
+    if((choice >= 0) && (choice <=4))   
+    {      
+      return (choice);   
+    }     
+    else 
+    {
+      printf("Wrong Input, enter again!\n");    
+    }  
+  }
+  return 0;
+}
