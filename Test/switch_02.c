@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "stdlib.h"
 
-
-
 void main()
 {
 	int key, i = 0;
@@ -77,9 +75,9 @@ void main()
 		system("pause");
 		system("cls");
 		fflush(stdin);
-	}
+		}
 
-}
+	}		
 
 }
 
