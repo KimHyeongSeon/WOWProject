@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "stdlib.h"
 
-
-
 void main()
 {
 	int i,j;
