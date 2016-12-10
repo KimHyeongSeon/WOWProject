@@ -16,9 +16,13 @@ void main()
 	for (p = 1; p <= h; p++)
 	{
 		for (i = h; i > p; i--)
+		{
 			printf(" ");
+		}
 		for (i = 1; i <= 2*p-1; i++)
+		{
 			printf("*");
+		}
 		printf("\n");
 	}
 }
