@@ -1,0 +1,15 @@
+module t_yyh();
+
+wire y;
+reg a;
+yyh yyh1(y, a);
+
+initial
+begin
+	#10 a = 1'b0;
+	#20 a = 1'b1;
+	#30 a = 1'b0;
+	#40 a = 1'b1;
+end
+
+endmodule
