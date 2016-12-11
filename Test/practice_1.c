@@ -27,4 +27,9 @@ void get_array(int a[], int size)
 
 void prt_array(int a[], int size)
 {   
-  int i;    printf("모든값들 :\n");    for (i = 0; i < size; i++)        printf("%d\n", a[i]);}
+  int i;    
+  printf("모든값들 :\n");  
+  
+  for (i = 0; i < size; i++) 
+    printf("%d\n", a[i]);
+}
