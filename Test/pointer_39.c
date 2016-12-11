@@ -8,4 +8,6 @@ int main(void)
   int *ptr1 = &a;
   int *ptr2 = &b;
   
-  printf("ptr1+ptr2=%d\n", *ptr1 + *ptr2); return 0;}
+  printf("ptr1+ptr2=%d\n", *ptr1 + *ptr2);
+  
+  return 0;}
