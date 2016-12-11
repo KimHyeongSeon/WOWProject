@@ -22,4 +22,5 @@ int main()
   printf("ptr1: 0x%x, ptr2: 0x%x\n", &(ptr1[1][1]), &(ptr2[1]));
   printf("ptr1: 0x%x, ptr2: 0x%x\n", ++ptr1, ++ptr2); 
   
-  return 0;}
+  return 0;
+}
