@@ -12,4 +12,9 @@ int main(void)
   return 0;
 }
 
-int add(int *arr3){ arr3[0] = 3; return arr3[0];}
+int add(int *arr3)
+{
+  arr3[0] = 3;
+  
+  return arr3[0];
+}
