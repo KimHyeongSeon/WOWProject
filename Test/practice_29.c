@@ -24,4 +24,5 @@ int main()
   puts(""); 
   printf("합계 : %.2lf\n평균 : %.2lf\n", sum, average); 
   
-  return 0;}
+  return 0;
+}
