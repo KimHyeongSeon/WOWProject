@@ -8,4 +8,5 @@ int main(void)
   *b += 60;
   
   printf("%d\n", a);
+  
   return 0;}
