@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title> Exerclse11-2 </title>  
+  <script type="text/JavaScript">
+    var db;
+    window.onload = function()
+    {
+      db = openDatabase("student", "1.0", "student database", 1024*1024);
+      db.transaction(exeCreate);
+    }
+    
+    function exeCreate(tx)
+    {
+      tx.executeSql("create table student(name, actor, av, )");
+    }
+
+    function insertData()
+    {
+      db.transaction(exeInsert);
+    }
+    
+    function exeInsert(tx)
+    {
+      tx.executeSql("insert into movie values(?,?)", [movie.value, actor.value]);
+    }
+    
+    function viewData()
+    {
+      db.transaction(exeSelect);
+    }
+    
+    function exeSelect(tx)
+    {
+      tx.executeSql("select * from movie", [], viewTabe);
+    }
+    
+    function viewTabe(tx, rs)
+    {
+      for(var i = 0; i < rs.rows.length; i++)
+      {
+        var row = rs.rows.item(i);
+        document.getElementById("table").innerHTML +=  "<tr><td>" + row["name"] + "</td><td>" + row["actor"] + "</td></tr>";
+      }   
+    } 
+	
+    </script>
+	
+  <h1><center>성적 입력</center></h1>
+</head>
+<body>
+<center>
+    이름 <input type="text" id="name"><br>
+    학번 <input type="text" id="number"><br>
+	컴퓨터 점수 <input type="text" id="com"><br>
+	국어 점수 <input type="text" id="kor"><br>
+	영어 점수 <input type="text" id="eng"><br>
+	수학 점수 <input type="text" id="math"><br>
+    <input type="button" onclick="marke()" value="학생 성적 입력"><br>
+    <input type="button" onclick="av()" value="평균 점수 80 이상 학생 조회"><br>
+	<input type="button" onclick="av()" value="평균 점수 80 이하 학생 조회"><br>
+	</center>
+    <hr>    
+    <table id="table"></table>
+</body>
+</html>
