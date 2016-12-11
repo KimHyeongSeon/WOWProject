@@ -28,4 +28,19 @@ int main()
 
 int check(int *a)
 {
-  int result1, result2, result3; int i = 0; for (i = 0; i < 13; i = i + 2)  result1 += a[i]; for (i = 1; i < 13; i = i + 2)  result2 += a[i]; result3 = result1 + result2; if (result3 % 10 == 0)  result3 = 1; else  result3 = 0; return result3;}
+  int result1, result2, result3;
+  int i = 0;
+  
+  for (i = 0; i < 13; i = i + 2)
+    result1 += a[i];
+  for (i = 1; i < 13; i = i + 2)  
+    result2 += a[i];
+  result3 = result1 + result2;
+  
+  if (result3 % 10 == 0)  
+    result3 = 1;
+  else 
+    result3 = 0;
+  
+  return result3;
+}
