@@ -18,4 +18,5 @@ int main(void)
   
   printf("증가 후 pc=%d, pi=%d, pd=%d\n", pc, pi, pd); 
   
-  return 0;}
+  return 0;
+}
