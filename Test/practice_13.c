@@ -11,4 +11,5 @@ int main()
   for (i = 0; i < 5; i++) 
     printf("%.1lf ", p[i]);
   
-  return 0;}
+  return 0;
+}
