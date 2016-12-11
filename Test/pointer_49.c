@@ -17,5 +17,5 @@ int main()
   swap(&a, &b);  
   printf("a,b,x,y: %d,%d,%d,%d\n", a, b, x, y);
 
-  
+  return 0;
 } 
