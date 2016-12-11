@@ -1,0 +1,23 @@
+
+module sevenseg (W, X, Y, Z, leds);
+
+input W, X, Y, Z;
+output reg [6:0] leds;
+
+always @(W or X or Y or Z)
+begin
+	if ({W, X, Y, Z} == 4'd0) leds = 7'b1111110;
+	else if ({W, X, Y, Z} == 4'd1) leds = 7'b0110000;
+	else if ({W, X, Y, Z} == 4'd2) leds = 7'b1101101;
+	else if ({W, X, Y, Z} == 4'd3) leds = 7'b1111001;
+	else if ({W, X, Y, Z} == 4'd4) leds = 7'b0110011;
+	else if ({W, X, Y, Z} == 4'd5) leds = 7'b1011011;
+	else if ({W, X, Y, Z} == 4'd6) leds = 7'b1011111;
+	else if ({W, X, Y, Z} == 4'd7) leds = 7'b1110010;
+	else if ({W, X, Y, Z} == 4'd8) leds = 7'b1111111;
+	else if ({W, X, Y, Z} == 4'd9) leds = 7'b1111011;
+	else leds = 7'bxxxxxxx;end
+
+
+
+endmodule
