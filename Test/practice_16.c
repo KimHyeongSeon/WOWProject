@@ -9,4 +9,5 @@ int main()
   printf("%d%d\n",*jint[0],*jint[1]);
   printf("%s %s\n",jchar[0],jchar[1]);
   
-  return 0;}
+  return 0;
+}
