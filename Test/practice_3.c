@@ -15,4 +15,5 @@ int main(void)
   printf("%d\n", *ptr);
   ptr--;
   
-  return 0;}
+  return 0;
+}
