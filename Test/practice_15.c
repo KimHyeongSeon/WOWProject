@@ -16,4 +16,7 @@ int main(void)
   return 0;
 }
 
-void PrintPoint(POINT *p){ printf("(%d, %d)\n", p->x, p->y);}
+void PrintPoint(POINT *p)
+{
+  printf("(%d, %d)\n", p->x, p->y);
+}
