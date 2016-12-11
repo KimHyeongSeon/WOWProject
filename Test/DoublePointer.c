@@ -1,3 +1,5 @@
+#include "stdio.h"
+
 void MaxAndMin(int *arr, int size, int **mxPtr, int **mnPtr)
 {
     int *max, *min;
