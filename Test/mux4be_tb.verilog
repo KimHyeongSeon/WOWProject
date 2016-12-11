@@ -1,0 +1,17 @@
+
+module mux4be_tb();
+reg i0, i1, i2, i3;
+reg s1, s0;
+wire out;
+
+mux4be mymux(out, i0, i1, i2, i3, s1, s0);
+
+initial
+begin
+i0 = 0; i1 = 1; i2 = 0; i3 = 1; s1 = 0; s0 = 0;
+#5 s1 = 0; s0 = 1;
+#5 s1 = 1; s0 = 0;
+#5 s1 = 1; s0 = 1;
+#5 s1 = 0; s0 = 0;
+end
+endmodule
