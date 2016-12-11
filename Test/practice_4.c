@@ -9,4 +9,7 @@ int main(void)
   pnum = &num2; 
   (*pnum) -= 20;
   
-  printf("num1:%d, num2:%d \n", num1, num2); return 0;}
+  printf("num1:%d, num2:%d \n", num1, num2);
+  
+  return 0;
+}
