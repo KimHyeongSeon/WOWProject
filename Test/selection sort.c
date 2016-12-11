@@ -6,6 +6,7 @@
 }//a와 b를 교환 
 
 void SelectionSort(int *base, int n);
+void ViewArr(int *arr, int n);
 
 int main(void)
 {
@@ -15,7 +16,6 @@ int main(void)
   return 0;
 }
 
-void ViewArr(int *arr, int n);
 void SelectionSort(int *base, int n)
 {    
   int i, j;   
