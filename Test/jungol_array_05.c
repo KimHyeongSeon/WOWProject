@@ -8,7 +8,6 @@ int main()
 	int classA, classB;
 
 	scanf("%d%d", &classA, &classB);
-
 	printf("%.1lf", arr[classA - 1] + arr[classB - 1]);
 
 	system("pause");
