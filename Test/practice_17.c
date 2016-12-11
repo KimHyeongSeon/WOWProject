@@ -7,4 +7,5 @@ int main(void)
   printf("%d\n", sizeof(foo)); 
   printf("%d\n", sizeof(foo) / sizeof(foo[0]));  
   
-  return 0;}
+  return 0;
+}
