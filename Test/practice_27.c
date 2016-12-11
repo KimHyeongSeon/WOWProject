@@ -16,4 +16,5 @@ int main()
     printf("%d ", p[i]);
   } 
   
-  return 0;}
+  return 0;
+}
