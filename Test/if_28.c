@@ -6,7 +6,6 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-
 	int battery;
 
 	printf("스마트폰 배터리 잔량을 알려주세요 >> ");
