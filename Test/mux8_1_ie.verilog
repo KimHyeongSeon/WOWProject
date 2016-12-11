@@ -1,0 +1,25 @@
+
+module mux8_1_ie (i0, i1, i2, i3, i4, i5, i6, i7, out, s0, s1, s2);
+
+input i0, i1, i2, i3, i4, i5, i6, i7;
+input s0, s1, s2;
+output out;
+
+reg out;
+
+always @(*)
+begin
+	if ({s0, s1, s2} == 3'd0) out = i0;
+	else if ({s0, s1, s2} == 3'd1) out = i1;
+	else if ({s0, s1, s2} == 3'd2) out = i2;
+	else if ({s0, s1, s2} == 3'd3) out = i3;
+	else if ({s0, s1, s2} == 3'd4) out = i4;
+	else if ({s0, s1, s2} == 3'd5) out = i5;
+	else if ({s0, s1, s2} == 3'd6) out = i6;
+	else if ({s0, s1, s2} == 3'd7) out = i7;
+	else $display("Invalid input");
+end
+
+
+
+endmodule
