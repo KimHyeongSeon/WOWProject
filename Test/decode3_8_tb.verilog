@@ -1,0 +1,21 @@
+
+module decode3_8_tb ();
+
+wire o0, o1, o2, o3, o4, o5, o6, o7;
+reg i0, i1, i2;
+ 
+decode3_8  decode3_8_tb(i0, i1, i2, o0, o1, o2, o3, o4, o5, o6, o7);
+
+initial
+
+begin
+i0 = 0; i1 = 0; i2 = 0;
+
+#10 i0 = 1; i1 = 0; i2 = 0;
+#10 i0 = 1; i1 = 1; i2 = 0;
+#10 i0 = 1; i1 = 1; i2 = 1;
+#10 i0 = 0; i1 = 1; i2 = 1;
+
+end
+
+endmodule
