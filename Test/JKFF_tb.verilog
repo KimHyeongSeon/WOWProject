@@ -1,0 +1,24 @@
+
+module JKFF_tb();
+
+wire Q, Qbar;
+reg J, K, clk, rst_n;
+
+JKFF myJK(J, K, Q, Qbar, clk, rst_n);
+
+initial clk = 0;
+always #5 clk = ~clk;
+
+initial
+begin
+J = 0; J = 0; rst_n = 1;
+#10 rst_n = 0;
+#10 rst_n = 1;
+#10 J = 0; K = 0;
+#10 J = 0; K = 1;
+#10 J = 1; K = 0;
+#10 J = 1; K = 1;
+
+end
+
+endmodule
