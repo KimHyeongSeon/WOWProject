@@ -12,4 +12,5 @@ int main()
   printf("%d * %d = %d\n", *p1, *p2, *p1 * *p2); 
   printf("%d / %d = %d\n", *p1, *p2, *p1 / *p2);
   
-  return 0;}
+  return 0;
+}
