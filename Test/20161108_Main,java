@@ -1,0 +1,15 @@
+package kr.ac.sunmoon;
+
+public class Main 
+{
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		TimerRunnable runnalbe = new TimerRunnable();
+		Thread thread = new Thread(runnalbe);
+		thread.start();
+	}
+
+}
+      
