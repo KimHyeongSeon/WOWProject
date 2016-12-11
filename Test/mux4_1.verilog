@@ -1,0 +1,21 @@
+
+module mux4_1(Out, I0, I1, I2, I3, S0, S1);
+
+output Out;
+input I0, I1, I2, I3;
+inout S0, S1;
+
+wire S0not, S1not;
+wire A0, A1, A2, A3;
+
+not (S0not, S0);
+not (S1not, S1);
+
+and(A0, I0, S1not, S0not);
+and(A1, I1, S1not, S0);
+and(A2, I2, S1, S0not);
+and(A3, I3, S1, S0);
+
+or (Out, A0, A1, A2, A3);
+
+endmodule
