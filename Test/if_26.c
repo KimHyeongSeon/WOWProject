@@ -20,15 +20,25 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 
 		if (score >= 90)
+		{
 			printf("%d점은 A입니다.\n", score);
+		}
 		else if (score >= 80)
+		{
 			printf("%d점은 B입니다.\n", score);
+		}
 		else if (score >= 70)
+		{
 			printf("%d점은 C입니다.\n", score);
+		}
 		else if (score >= 60)
+		{
 			printf("%d점은 D입니다.\n", score);
+		}	
 		else
+		{
 			printf("%d점은 F입니다.\n", score);
+		}
 	}
 
 	system("pause");
