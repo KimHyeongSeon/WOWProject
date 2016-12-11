@@ -17,4 +17,5 @@ int main()
     printf("%.1lf ", p[i]); 
   }
   
-  return 0;}
+  return 0;
+}
