@@ -20,4 +20,10 @@ int main(int argc, char*argv[])
   
   printf("*p = %c\n",*p);   
   
-  test1(p);    printf("ch1 = %c\n",ch1);    test2(p);    printf("ch1 = %c\n",ch1);    }
+  test1(p);  
+  printf("ch1 = %c\n",ch1);   
+  test2(p);  
+  printf("ch1 = %c\n",ch1); 
+
+  return 0;
+}
