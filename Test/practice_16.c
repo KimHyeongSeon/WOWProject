@@ -6,4 +6,7 @@ int main()
   int * jint[2] = {&j1,&j2};
   char * jchar[] = {"it's","jdpb"};
   
-  printf("%d%d\n",*jint[0],*jint[1]); printf("%s %s\n",jchar[0],jchar[1]); return 0;}
+  printf("%d%d\n",*jint[0],*jint[1]);
+  printf("%s %s\n",jchar[0],jchar[1]);
+  
+  return 0;}
