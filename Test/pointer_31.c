@@ -24,4 +24,6 @@ void main()
   }
 }
 
-void _array(int *A, int *B, int size){ int i; for (i = 0; i < size; i++)  B[i] = A[i];}
+void _array(int *A, int *B, int size)
+{
+  int i; for (i = 0; i < size; i++)  B[i] = A[i];}
