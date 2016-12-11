@@ -35,4 +35,8 @@ int GetSumOfArray(int *arr, int size)
   int i;
   int total;
   
-  for (i = 0, total = 0; i < size; i++)  total += arr[i]; return total;}
+  for (i = 0, total = 0; i < size; i++) 
+    total += arr[i];
+  
+  return total;
+}
