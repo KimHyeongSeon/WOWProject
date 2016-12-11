@@ -8,4 +8,5 @@ int main(void)
   printf("   %x %x\n", array+2,&array[2]);  
   printf("%d %d %d \n", sizeof(array),sizeof(array+0),sizeof(&array[0])); 
   
-  return 0;}
+  return 0;
+}
