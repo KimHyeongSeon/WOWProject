@@ -16,4 +16,5 @@ int main(void)
   
   printf("i=%d,*pi=%d\n", i, *pi);
   
-  return 0;}
+  return 0;
+}
