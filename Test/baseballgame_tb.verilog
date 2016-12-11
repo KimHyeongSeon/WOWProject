@@ -1,0 +1,79 @@
+module baseballgame_tb();
+reg [3:0] p1num0;
+reg [3:0] p1num1;
+reg [3:0] p1num2;
+reg [3:0] p2num0;
+reg [3:0] p2num1;
+reg [3:0] p2num2;
+reg [3:0] innum0;
+reg [3:0] innum1;
+reg [3:0] innum2;
+reg [3:0] turn;
+reg    play;
+reg rst, clk, put;
+reg [3:0] number;
+wire player1, player2, out;
+wire[1:0]strike;
+wire [2:0]ball;
+
+baseballgame mybaseball(rst,clk,put,number,player1,player2,strike,ball,out);
+
+initial clk = 0;
+
+always #5 clk = ~clk;
+
+initial
+begin
+rst = 1;
+#10 rst = 0;
+#10 rst = 1;
+#20 put = 1;
+#20 number = 4'b0001;
+#20 put = 0;
+#20 put = 1;
+#20 number = 4'b0011;
+#20 put = 0;
+#20 put = 1;
+#20 number = 4'b0111;
+#20 put = 0;
+#20 put = 1;
+#20 number = 4'b0001;
+#20 put = 0;
+#20 put = 1;
+#20 number = 4'b0001;
+#20 put = 0;
+#20 put = 1;
+#20 number = 4'b0001;
+#20 put = 0;
+#10 number = 4'b0011;
+#10 put = 0;
+#10 put = 1;
+#10 number = 4'b0111;
+#10 put = 0;
+#10 number = 4'b1000;
+#10 put = 1;
+#10 number = 4'b1001;
+#10 put = 0;
+#10 put = 1;
+#10 number = 4'b0100;
+#10 put = 0;
+#10 number = 4'b0101;
+#10 put = 1;
+#10 number = 4'b0110;
+#10 put = 0;   //out? ????
+#10 put = 1;
+#10 number = 4'b1001;
+#10 put = 0;
+#10 number = 4'b1000;
+#10 put = 1;
+#10 number = 4'b0000;
+#10 put = 0;   //1s1b
+#10 put = 1;
+#10 number = 4'b0001;
+#10 put = 0;
+#10 number = 4'b0010;
+#10 put = 1;
+#10 number = 4'b0011;
+#10 put = 0;   //?? ? ??
+end
+endmodule
