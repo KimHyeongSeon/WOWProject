@@ -13,7 +13,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		printf("당신은 만19세 미만 미성인입니다\n");
 	else
 		printf("당신은 만19세 이상 성인입니다.\n");
+	
+	
 	system("pause");
-
 	return 0;
 }
