@@ -9,4 +9,5 @@ int main(void)
   for (i = 0; i < 5; i++, p++) 
     printf("%d\n", *p);
   
-  return 0;}
+  return 0;
+}
