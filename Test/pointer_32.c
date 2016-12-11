@@ -15,4 +15,5 @@ int main(void)
   printf("float* 의 크기 : %d\n", sizeof(float*));
   printf("double*의 크기 : %d\n", sizeof(double*));
   
-  return 0;}
+  return 0;
+}
