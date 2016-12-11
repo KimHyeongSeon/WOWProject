@@ -1,0 +1,6 @@
+module yyh(b, a, C0, C, sum, sumF);
+output sum, c, sumF;
+input a, b, C0;
+xor(sum, a, b);
+
+endmodule
