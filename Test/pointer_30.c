@@ -19,4 +19,5 @@ void getsum(int x, int y, int *p1,int *p2)
 {
   *p1=x+y;
   
-  if(x>=y)*p2=x-y;else*p2=y-x;}
+  if(x>=y)*p2=x-y;
+  else*p2=y-x;}
