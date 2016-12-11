@@ -1,8 +1,3 @@
-package npp.a1234567;
-
-/**
- * Created by user on 2016-12-02.
- */
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
