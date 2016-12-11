@@ -7,4 +7,9 @@ int main()
   int *ptr2 = array[0][1];
   int i; 
   
-  for(i=0; i<4; i++)  printf("%d\t", ptr1[1][i]); puts(""); for(i=0; i<4; i++)  printf("%d\t", ptr2[i]); puts(""); printf("%d\n", sizeof(array)/sizeof(int)); printf("ptr1: 0x%x, ptr2: 0x%x\n", ptr1, ptr2); printf("ptr1: 0x%x, ptr2: 0x%x\n", ptr1[1], &(ptr2[1])); printf("ptr1: 0x%x, ptr2: 0x%x\n", &(ptr1[1][1]), &(ptr2[1])); printf("ptr1: 0x%x, ptr2: 0x%x\n", ++ptr1, ++ptr2); return 0;}
+  for(i=0; i<4; i++)
+    printf("%d\t", ptr1[1][i]);
+  
+  puts("");
+  
+  for(i=0; i<4; i++)  printf("%d\t", ptr2[i]); puts(""); printf("%d\n", sizeof(array)/sizeof(int)); printf("ptr1: 0x%x, ptr2: 0x%x\n", ptr1, ptr2); printf("ptr1: 0x%x, ptr2: 0x%x\n", ptr1[1], &(ptr2[1])); printf("ptr1: 0x%x, ptr2: 0x%x\n", &(ptr1[1][1]), &(ptr2[1])); printf("ptr1: 0x%x, ptr2: 0x%x\n", ++ptr1, ++ptr2); return 0;}
