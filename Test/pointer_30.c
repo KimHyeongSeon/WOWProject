@@ -14,4 +14,5 @@ void main()
   printf("두정수의 합 :%d\n",a);
   printf("두정수의 차 :%d\n",b);
 }
+
 void getsum(int x, int y, int *p1,int *p2){*p1=x+y;if(x>=y)*p2=x-y;else*p2=y-x;}
