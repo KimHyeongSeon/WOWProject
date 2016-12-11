@@ -12,4 +12,5 @@ int main(void)
   **dpi = *pi + 2;
   printf("%d %d %d\n", i, *pi, **dpi);
   
-  return 0;}
+  return 0;
+}
