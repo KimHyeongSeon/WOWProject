@@ -12,4 +12,5 @@ int main(int argc, const char * argv[])
   printf("p-q : %x\n",p-q);  
   printf("(unsigned int)p+(unsigned int)q : %x\n",(unsigned int)p +(unsigned int)q);  
   
-  return 0;}
+  return 0;
+}
