@@ -13,4 +13,11 @@ int GetMax(int arr[], int n)
   int i;  
   int maxValue = arr[0];
   
-  for(i = 1; i < n; i++) {            if(maxValue < *(arr+i))        maxValue = *(arr+i); } return maxValue;}
+  for(i = 1; i < n; i++)
+  {
+    if(maxValue < *(arr+i))    
+      maxValue = *(arr+i);
+  }
+  
+  return maxValue;
+}
