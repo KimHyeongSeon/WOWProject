@@ -6,4 +6,7 @@ int main(void)
   int*ptr1 = &num;
   int*ptr2 = ptr1;
   
-  (*ptr1)++; (*ptr2)++; printf("%d \n", num); return 0;}
+  (*ptr1)++;
+  (*ptr2)++;
+  
+  printf("%d \n", num); return 0;}
