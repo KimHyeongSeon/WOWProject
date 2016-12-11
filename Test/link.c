@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>    // malloc, free 함수가 선언된 헤더 파일
 
-struct NODE {             // 연결 리스트의 노드 구조체
+struct NODE              // 연결 리스트의 노드 구조체
+{
     struct NODE *next;    // 다음 노드의 주소를 저장할 포인터
     int data;             // 데이터를 저장할 멤버
 };
