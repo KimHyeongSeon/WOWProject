@@ -6,4 +6,9 @@ int main(void)
   int(*p)[7] = &arr;
   int i;
   
-  for (i = 0; i < 7; i++)  printf("%d ", (*p)[i]); printf("\n"); return 0;}
+  for (i = 0; i < 7; i++) 
+    printf("%d ", (*p)[i]);
+  
+  printf("\n"); 
+  
+  return 0;}
