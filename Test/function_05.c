@@ -1,4 +1,4 @@
- #include "stdafx.h"
+#include "stdafx.h"
 #include "stdlib.h"
 
 int pow(int x, int y)
