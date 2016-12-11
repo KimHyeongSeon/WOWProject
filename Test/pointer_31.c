@@ -20,4 +20,8 @@ void main()
   
   for (j = 0; j < SIZE; j++)
   { 
-    printf("%3d", b[j]); }}void _array(int *A, int *B, int size){ int i; for (i = 0; i < size; i++)  B[i] = A[i];}
+    printf("%3d", b[j]);
+  }
+}
+
+void _array(int *A, int *B, int size){ int i; for (i = 0; i < size; i++)  B[i] = A[i];}
