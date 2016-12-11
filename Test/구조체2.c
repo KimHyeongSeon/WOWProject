@@ -3,7 +3,8 @@
 #include "stddef.h" // offsetof 매크로가 정의된 헤더 파일
 
 #pragma pack(push, 1)    // 1바이트 크기로 정렬
-struct PacketHeader {
+struct PacketHeader 
+{
     char flags;    // 1바이트
     int seq;       // 4바이트
 };
