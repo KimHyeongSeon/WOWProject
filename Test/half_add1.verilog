@@ -1,0 +1,11 @@
+
+module half_add1(a, b, sum, cout);
+input a, b;
+output sum, cout;
+wire cout_bar;
+
+xor(sum, a, b);
+nand(cout_bar, a, b);
+not(cout, cout_bar);
+
+endmodule
