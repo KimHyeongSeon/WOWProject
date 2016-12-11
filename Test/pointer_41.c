@@ -9,4 +9,7 @@ int main(int argc, const char * argv[])
   
     printf("address ch = %p\n", &ch);   
     printf("address p = %p\n",p);  
-  }        return 0;}
+  }   
+  
+  return 0;
+}
