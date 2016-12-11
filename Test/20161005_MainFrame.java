@@ -74,9 +74,7 @@ public class MainFrame extends JFrame
 			e.printStackTrace();
 		} 
 		
-		
-		
-		
+			
 		setTitle("Notepad");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource("/kr/ac/sunmoon/image/logoIcon.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
