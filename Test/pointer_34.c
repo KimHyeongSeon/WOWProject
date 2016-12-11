@@ -7,4 +7,5 @@ int main(void)
   b = &a;
   *b += 60;
   
-  printf("%d\n", a); return 0;}
+  printf("%d\n", a);
+  return 0;}
