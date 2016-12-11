@@ -14,4 +14,18 @@ void main()
   
   printf("월급의 총액\n");
   
-  for (j = 0; j < SIZE; j++) {  printf("직원 %d %3d\n", j + 1, c[j]); }}void salary(const int *A, const int *B, int *C, int size){ int i; for (i = 0; i < SIZE; i++)  C[i] = A[i] + B[i];}
+  for (j = 0; j < SIZE; j++)
+  { 
+    printf("직원 %d %3d\n", j + 1, c[j]);
+  }
+  
+  return 0;
+}
+
+void salary(const int *A, const int *B, int *C, int size)
+{
+  int i;
+  
+  for (i = 0; i < SIZE; i++) 
+    C[i] = A[i] + B[i];
+}
