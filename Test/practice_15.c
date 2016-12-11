@@ -6,4 +6,8 @@ typedef struct point
   int y;
 } POINT;
 
-void PrintPoint(POINT *p);int main(void){ POINT pt1 = { 100, 200 }; PrintPoint(&pt1); return 0;}void PrintPoint(POINT *p){ printf("(%d, %d)\n", p->x, p->y);}
+void PrintPoint(POINT *p);
+
+int main(void)
+{
+  POINT pt1 = { 100, 200 }; PrintPoint(&pt1); return 0;}void PrintPoint(POINT *p){ printf("(%d, %d)\n", p->x, p->y);}
