@@ -8,13 +8,23 @@ int _tmain(int argc, _TCHAR* argv[])
 	scanf_s("%d", &phone);
 	
 	if (phone ==1)
+	{	
 		printf("당신은 아이폰 유저시군요!\n");
+	}
 	else if (phone == 2)
+	{
 		printf("당신은 블랙베리 유저시군요!\n");
+	}
 	else if (phone == 3 || phone == 4 || phone == 5||phone==6)
+	{
 		printf("당신은 안드로이드 유저시군요!\n");
+	}
 	else
+	{
 		printf("목록에 없는 기종입니다... 나중에 추가하도록 하겠습니다.\n");
+	}
+	
+	
 	system("pause");
 	return 0;
 }
