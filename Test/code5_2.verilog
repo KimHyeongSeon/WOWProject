@@ -1,0 +1,13 @@
+
+module code5_2 (x1, x2, x3, clock, f, g);
+
+input x1, x2, x3, clock;
+output reg f, g;
+
+always @(posedge clock)
+begin
+f <= x1 & x2;
+g <= f | x3;
+end
+
+endmodule
