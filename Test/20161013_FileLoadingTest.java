@@ -16,5 +16,4 @@ public class FileLoadingTest
 			System.out.println(token);
 		}
 	}
-
 }
