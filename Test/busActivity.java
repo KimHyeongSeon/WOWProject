@@ -10,10 +10,12 @@ import android.view.View;
 import java.io.File;
 import java.io.FileInputStream;
 
-public class busActivity extends AppCompatActivity {
+public class busActivity extends AppCompatActivity 
+{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) 
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus);
 
