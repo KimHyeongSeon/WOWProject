@@ -8,4 +8,5 @@ int main()
   printf ("%p\n", & array); 
   printf ("%p\n", & array[0]); 
   
-  return 0;}
+  return 0;
+}
