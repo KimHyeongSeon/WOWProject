@@ -10,4 +10,5 @@ int main(void)
   printf("%u %u %u\n", pi - 1, pi, pi + 1);
   printf("%u %u %u\n", pd - 1, pd, pd + 1); 
   
-  return 0;}
+  return 0;
+}
