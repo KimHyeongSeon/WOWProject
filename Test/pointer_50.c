@@ -17,4 +17,8 @@ int main()
   return 0;
 }
 
-void rectangle(int a,int b,int * area,int * perim){    *area = a * b;    *perim = 2 * (a + b);}
+void rectangle(int a,int b,int * area,int * perim)
+{ 
+  *area = a * b; 
+  *perim = 2 * (a + b);
+}
