@@ -1,0 +1,13 @@
+
+module asdf_tb();
+reg a;
+half_add1 t_halfadd1(cout_bar, a);
+
+initial
+begin
+	#10 a = 1'b0;
+	#20 a = 1'b1;
+	#30 a = 1'b0;
+ 	#40 a = 1'b1;
+end
+endmodule
