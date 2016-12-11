@@ -13,4 +13,8 @@ void main()
 
 int salary(int *A,int size)
 { 
-  int i,sum=0; for (i = 0; i < SIZE; i++)  sum += A[i]; return sum;}
+  int i,sum=0;
+  
+  for (i = 0; i < SIZE; i++) 
+    sum += A[i]; return sum;
+}
