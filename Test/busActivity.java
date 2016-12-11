@@ -1,5 +1,3 @@
-package npp.a1234567;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
