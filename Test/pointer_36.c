@@ -13,4 +13,7 @@ int main(void)
   printf("증가 전 pc=%d, pi=%d, pd=%d\n", pc, pi, pd);
   
   pc++;
-  pi++; pd++; printf("증가 후 pc=%d, pi=%d, pd=%d\n", pc, pi, pd);  return 0;}
+  pi++;
+  pd++;
+  
+  printf("증가 후 pc=%d, pi=%d, pd=%d\n", pc, pi, pd);  return 0;}
