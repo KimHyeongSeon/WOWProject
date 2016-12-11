@@ -30,4 +30,9 @@ void PrintArray(int *arr, int size)
   printf("\n");
 }
 
-int GetSumOfArray(int *arr, int size){ int i; int total; for (i = 0, total = 0; i < size; i++)  total += arr[i]; return total;}
+int GetSumOfArray(int *arr, int size)
+{
+  int i;
+  int total;
+  
+  for (i = 0, total = 0; i < size; i++)  total += arr[i]; return total;}
