@@ -15,4 +15,7 @@ int main(int argc, char*argv[])
   p = &ch1; 
   printf("*p1 = %c\n", *p);  
   p = &ch2; 
-  printf("*p2 = %c\n", *p);    return 0;}
+  printf("*p2 = %c\n", *p);   
+  
+  return 0;
+}
