@@ -9,4 +9,6 @@ int main(void)
   (*ptr1)++;
   (*ptr2)++;
   
-  printf("%d \n", num); return 0;}
+  printf("%d \n", num); 
+  
+  return 0;}
