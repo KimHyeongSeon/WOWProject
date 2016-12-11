@@ -9,4 +9,5 @@ int main()
   scanf("%d", &input); 
   printf("%d...%d", *p / 10, *p % 10);
   
-  return 0;}
+  return 0;
+}
