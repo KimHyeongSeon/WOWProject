@@ -9,4 +9,6 @@ void main()
   int j;
   _array(&*a, &*b, SIZE);
   
-  printf("A배열\n"); for (j = 0; j < SIZE; j++) {  printf("%3d", a[j]); } printf("\nB배열\n"); for (j = 0; j < SIZE; j++) {  printf("%3d", b[j]); }}void _array(int *A, int *B, int size){ int i; for (i = 0; i < size; i++)  B[i] = A[i];}
+  printf("A배열\n");
+  
+  for (j = 0; j < SIZE; j++) {  printf("%3d", a[j]); } printf("\nB배열\n"); for (j = 0; j < SIZE; j++) {  printf("%3d", b[j]); }}void _array(int *A, int *B, int size){ int i; for (i = 0; i < size; i++)  B[i] = A[i];}
