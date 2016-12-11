@@ -36,10 +36,6 @@ public class Person
 	{
 		this.nickName = nickName;
 	}
-	
-	
-	
-	
 }
 
 	
