@@ -1,0 +1,427 @@
+
+module baseballgame(rst,clk,put,number,player1,player2,strike,ball,out
+);
+reg p1num0,p1num1,p1num2,p2num0,p2num1,p2num2,innum0,innum1,innum2,turn;
+input rst, clk, put;
+input [3:0] number;
+output reg player1, player2, out;
+output reg [1:0]strike;
+output reg [2:0]ball;
+
+localparam A=0, B=1, C=2, D=3, E=4, 
+           F=5, G=6, H=7, I=8, J=9, 
+           K=10, L=11,
+	   outball=12, oneball=13, twoball=14, threeball=15, onestrike=16,
+	   twostrike=17, gameset=18, oneandone=19, oneandtwo=20;
+reg[4:0] state, nxtstate;
+
+always @ (posedge clk, negedge rst)
+begin
+	if(!rst)
+		begin
+			state <= A;
+		end
+	else
+		begin
+			state <= nxtstate;
+		end
+end
+
+always @ (turn)
+begin
+	if(turn == 1)
+		begin
+		player1 = 1; player2 = 0;
+		end
+	else if(turn == 2)
+		begin
+		player1 = 0; player2 = 1;
+		end
+	else 
+		begin
+		out = 1'bx;
+		end
+end
+
+always @ (*)
+begin
+	case(state)
+		A:begin
+			player1 = 1;
+			if(put == 1)
+				nxtstate = B;
+			else
+				nxtstate = state;
+		end
+		
+		B:begin
+			if(put == 0)
+				begin
+				p1num0 = number;
+				nxtstate = C;
+				end
+			else
+				nxtstate = state;
+		end
+
+		C:begin
+			if(put == 1)
+				begin
+				p1num1 = number;
+				nxtstate = D;
+				end
+			else
+				nxtstate = state;
+		end
+		
+		D:begin
+			if(put == 0)
+				begin
+				p1num2 = number;
+				nxtstate = E;
+				end
+			else
+				nxtstate = state;
+		end		
+
+		E:begin
+			if(put == 1)
+				nxtstate = F;
+			else
+				begin
+				nxtstate = state;
+				end
+		end
+
+		F:begin
+			if(put == 0)     
+				begin
+				innum0 = number;
+				nxtstate = G;
+				end
+			else
+				nxtstate = state;
+		end
+
+		G:begin
+			if(put == 1)
+				begin
+				innum1 = number;
+				nxtstate = H;
+				end
+			else
+				nxtstate = state;
+		end
+	
+		H:begin
+			if(put == 0)
+			begin
+			innum2 = number;
+
+			
+			begin
+			if(innum0 == p1num0)	//sxx
+				begin
+				if(innum1 == p1num1)	//ssx         
+					begin
+					if(innum2 == p1num2)	//sss
+						begin
+							nxtstate = gameset;
+						end
+					else	//ssn
+						begin
+							nxtstate = twostrike;
+						end
+					end
+				else if(innum1 == p1num2)	//sbx
+					begin
+					if(innum2 == p1num1)	//sbb
+						begin
+							nxtstate = oneandtwo;
+						end
+					else	//sbn
+						begin
+							nxtstate = oneandone;
+						end
+					end
+				else	//snx
+					begin
+					if(innum2 == p1num2)	//sns
+						begin
+							nxtstate = twostrike;
+						end
+					else if(innum2 == p1num1)	//snb
+						begin
+								nxtstate = oneandone;
+						end
+					else	//snn
+						begin
+							nxtstate = onestrike;
+						end
+					end
+				end
+			
+			else if(innum0 == p1num2)	//bxx
+				begin
+				if(innum1 == p1num1)	//bsx
+					begin
+					if(innum2 == p1num0)	//bsb
+						begin
+							nxtstate = oneandtwo;
+						end
+					else	//bsn
+						begin
+							nxtstate = oneandone;
+						end
+					end
+				else if(innum1 == p1num0)	//bbx
+					begin
+					if(innum2 == p1num1)	//bbb
+						begin
+							nxtstate = threeball;
+						end
+					else	//bbn
+						begin
+							nxtstate = twoball;
+						end
+					end
+				else	//bnx
+					begin
+					if(innum2 == p1num0)	//bnb
+						begin
+							nxtstate = twoball;
+						end
+					else	//bnn
+						begin
+							nxtstate = oneball;
+						end
+					end
+				end
+			else if(innum0 == p1num1)	//bxx
+				begin
+				if(innum1 == p1num0)	//bbx
+					begin
+					if(innum2 == p1num2)	//bbs
+						begin
+							nxtstate = oneandtwo;
+						end
+					else	//bbn
+						begin
+							nxtstate = twoball;
+						end
+					end
+				else if(innum1 == p1num2)	//bbx
+					begin
+					if(innum2 == p1num0)	//bbb
+						begin
+							nxtstate = threeball;
+						end
+					else	//bbn
+						begin
+							nxtstate = twoball;
+						end
+					end
+				else	//bnx
+					begin
+					if(innum2 == p1num2)	//bns
+						begin
+							nxtstate = oneandone;
+						end
+					else if(innum2 == p1num0)	//bnb
+						begin
+							nxtstate = twoball;
+						end
+					else	//bnn
+						begin
+							nxtstate = oneball;
+						end
+					end
+				end
+			else	//nxx
+				begin
+				if(innum1 == p1num1)	//nsx
+					begin
+					if(innum2 == p1num2)	//nss
+						begin
+							nxtstate = twostrike;
+						end
+					else if(innum2 == p1num0)	//nsb
+						begin
+							nxtstate = oneandone;
+						end
+					else	//nsn
+						begin
+							nxtstate = onestrike;
+						end
+					end
+				else if(innum1 == p1num0)	//nbx
+					begin
+					if(innum2 == p1num2)	//nbs
+						begin
+							nxtstate = oneandone;
+						end
+					else if(innum2 == p1num1)	//nbb
+						begin
+							nxtstate = twoball;
+						end
+					else	//nbn
+						begin
+							nxtstate = oneball;
+						end
+					end
+				else if(innum1 == p1num2)	//nbx
+					begin
+					if(innum2 == p1num0)	//nbb
+						begin
+							nxtstate = twoball;
+						end
+					else if(innum2 == p1num1)	//nbb
+						begin
+							nxtstate = twoball;
+						end
+					else	//nbn
+						begin
+							nxtstate = oneball;
+						end
+					end
+				else	//nnx
+					begin
+					if(innum2 == p1num2)	//nns
+						begin
+							nxtstate = onestrike;
+						end
+					else if(innum2 == p1num0)	//nnb
+						begin
+							nxtstate = oneball;
+						end
+					else if(innum2 == p1num1)	//nnb
+						begin
+							nxtstate = oneball;
+						end
+					else	//nnn
+						begin
+							nxtstate = outball;
+						end
+					end
+				end
+			end	
+			end
+			else
+			nxtstate = state;
+		end
+		
+		outball:begin
+			out = 1;
+
+			if(put == 1)
+				begin
+					turn = !turn;
+					nxtstate = J;
+				end
+			else
+				nxtstate = state;
+			end
+		
+		oneball:begin
+			ball = 3'b001;
+
+			if(put == 1)
+				begin
+					turn = !turn;
+					ball = 3'b000;
+					nxtstate = J;
+				end
+			else
+				nxtstate = state;
+			end
+		
+		twoball:begin
+			ball = 3'b011;
+
+			if(put == 1)
+				begin
+					turn = !turn;
+					ball = 3'b000;
+					nxtstate = J;
+				end
+			else
+				nxtstate = state;
+			end	
+			
+		threeball:begin
+			ball =3'b111;
+
+			if(put == 1)
+				begin
+					turn = !turn;
+					ball = 3'b000;
+					nxtstate = J;
+				end
+			else
+				nxtstate = state;
+			end	
+
+		onestrike:begin
+			strike = 2'b01;
+
+			if(put == 1)
+				begin
+					turn = !turn;
+					strike = 2'b00;
+					nxtstate = J;
+				end
+			else
+				nxtstate = state;
+			end	
+			
+		twostrike:begin
+			strike = 2'b11;
+
+			if(put == 1)
+				begin
+					turn = !turn;
+					strike = 2'b00;
+					nxtstate = J;
+				end
+			else
+				nxtstate = state;
+			end	
+
+		gameset:begin
+				strike = 2'b11;
+				ball = 3'b111;
+				out = 1;
+			end	
+		
+		oneandone:begin
+			strike = 2'b01;
+			ball = 3'b001;
+
+			if(put == 1)
+				begin
+					turn = !turn;
+					strike = 2'b00;
+					ball = 3'b000;
+					nxtstate = J;
+				end
+			else
+				nxtstate = state;
+			end	
+
+		oneandtwo:begin
+			strike = 2'b01;
+			ball = 3'b011;
+
+			if(put == 1)
+				begin
+					turn = !turn;
+					strike = 2'b00;
+					ball = 3'b000;
+					nxtstate = J;
+				end
+			else
+				nxtstate = state;
+			end	
+	endcase
+end
+endmodule
