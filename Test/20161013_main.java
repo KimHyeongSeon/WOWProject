@@ -6,7 +6,5 @@ public class Main
 	{
 		Person p = new Person();
 		Student s = new Student();
-
 	}
-
 }
