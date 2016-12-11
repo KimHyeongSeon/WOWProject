@@ -10,4 +10,5 @@ int main(void)
   
   printf("ptr1+ptr2=%d\n", *ptr1 + *ptr2);
   
-  return 0;}
+  return 0;
+}
