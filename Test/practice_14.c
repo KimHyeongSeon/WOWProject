@@ -20,4 +20,14 @@ int main()
   return 0;
 }
 
-void PrintArray(int *arr, int size){ int i; for (i = 0; i < size; i++)  printf("%d ", arr[i]); printf("\n");}int GetSumOfArray(int *arr, int size){ int i; int total; for (i = 0, total = 0; i < size; i++)  total += arr[i]; return total;}
+void PrintArray(int *arr, int size)
+{
+  int i;
+  
+  for (i = 0; i < size; i++)
+    printf("%d ", arr[i]);
+ 
+  printf("\n");
+}
+
+int GetSumOfArray(int *arr, int size){ int i; int total; for (i = 0, total = 0; i < size; i++)  total += arr[i]; return total;}
