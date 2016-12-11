@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h> 
+
 struct List 
 {   
   char strData[11];    
@@ -34,12 +35,14 @@ void insertFirstNode(struct CircleList *list, char *x)
   newNode->nextList = NULL; 
   strcpy(newNode->strData, x);   
   strcpy(newNode->strData, x);   
+  
   if (list->List == NULL) 
   {
     list->List = newNode;      
     newNode->nextList = newNode;  
   }
-  else { 
+  else 
+  {    
     List *temp = list->List;   
     while (temp->nextList != list->List)  
     { 
