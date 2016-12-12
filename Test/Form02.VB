@@ -1,4 +1,4 @@
-Public Class Form1
+Public Class Form2
 
     Private Sub DateTimePicker1_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DateTimePicker1.ValueChanged
         DateTimePicker1.Format = DateTimePickerFormat.Custom
