@@ -1,12 +1,13 @@
 #include<stdio.h>
 
 int main(void)
-{
+{	
+	struct sungjuk
+	{			
+		char f[10];
+		int a,b,c;
+	};
 	
-struct sungjuk{
-	char f[10];
-	int a,b,c;
-};
 	struct sungjuk st;
 	int g,e;
 	scanf("%s",&(O,X?)st.f);
