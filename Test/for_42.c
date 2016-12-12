@@ -1,5 +1,7 @@
 
 #include<stdio.h>
+
+
 int main(void)
 {
 	int b[4][3], i,j, c=1;
@@ -17,7 +19,7 @@ int main(void)
 	{
 		for(j=0; j<i+1;j++)
 		{
-		printf("%d",b[i][j]);
+			printf("%d",b[i][j]);
 		}
 		printf("\n");
 	}
