@@ -1,4 +1,5 @@
 #include<stdio.h>
+
 int punc(int c)
 {
 	static int num=0;
@@ -6,7 +7,7 @@ int punc(int c)
 		num++;
 	return num;
 }
-main()
+void main()
 {
 	int c, cnt;
 	while((c=getchar()) != EOF)
