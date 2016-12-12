@@ -19,7 +19,5 @@ int main(void)
 	printf("짝수의 합 : %d", b);
 	printf("홀수의 합 : %d", c);
 
-
 	return 0;
-
 }
