@@ -2,7 +2,6 @@
 main()
 {
 	int n,d;
-	struct sungjuk{
 		char a[10];
 		int e,f,g;};
 		struct sungjuk st, *ptr;
