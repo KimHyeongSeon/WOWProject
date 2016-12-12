@@ -1,5 +1,6 @@
 #include<stdio.h>
-main()
+
+void main()
 {
 	int n,d;
 	struct sungjuk
