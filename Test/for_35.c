@@ -14,5 +14,7 @@ void strcpy(char *px, char *py)
 	int d;
 	d=0;
 	while((*(px+d) =*(py+d)) !='\0')
+	{
 		d++;
+	}
 }
