@@ -1,7 +1,7 @@
 #include<stdio.h>
 
 void strcpy(char *px, char *py);
-main()
+void main()
 {
 	char a[] = "test data";
 	char b[] = "a and b";
