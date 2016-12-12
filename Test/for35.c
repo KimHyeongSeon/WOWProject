@@ -8,6 +8,7 @@ main()
 	strcpy(a, b);
 	printf("%s\n%s\n",a,b);
 }
+
 void strcpy(char *px, char *py)
 {
 	int d;
