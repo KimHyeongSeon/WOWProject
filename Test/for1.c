@@ -1,4 +1,5 @@
 #include<stdio.h>
+
 main(void){
 	typedef struct sungjuk{
 		char f[10];
