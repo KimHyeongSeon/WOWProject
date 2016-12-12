@@ -1,5 +1,8 @@
 #include<stdio.h>
-int main(void){
+
+int main(void)
+{
+	
 struct sungjuk{
 	char f[10];
 	int a,b,c;
