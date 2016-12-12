@@ -46,10 +46,8 @@ whatthe:
 
 	if(one==num2)
 		ball+=1;
-    
 	if(one==num3)
 		ball+=1;
-    
 	if(two==num1)
 		ball+=1;
 	if(two==num3)
