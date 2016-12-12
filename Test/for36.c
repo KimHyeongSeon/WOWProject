@@ -1,4 +1,5 @@
 #include<stdio.h>
+
 main(){
 	char ch[] = "computer";
 	char *pt;
