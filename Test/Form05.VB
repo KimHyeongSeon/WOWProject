@@ -1,4 +1,4 @@
-Public Class Form1
+Public Class Form5
 
     Private Sub 글꼴선택ToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles 글꼴선택ToolStripMenuItem.Click
         FontDialog1.ShowColor = True
