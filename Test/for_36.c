@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-main()
+int main()
 {
 	char ch[] = "computer";
 	char *pt;
