@@ -2,8 +2,6 @@
 #include <iostream>
 using namespace std;
 
-//#define INT_COORD
-
 class Point 
 {
 public:
