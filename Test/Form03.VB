@@ -1,4 +1,4 @@
-Public Class Form1
+Public Class Form3
     Dim fg(0 To 4) As Integer
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Dim i As Integer
