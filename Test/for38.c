@@ -2,7 +2,8 @@
 #define ABS(x)(x>0 ? x : -x)
 #define AREA(w,h)(w*h/2)
 
-main(){
+main()
+{
 float a,b;	
 int c,e,g;
 	
