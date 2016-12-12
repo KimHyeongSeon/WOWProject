@@ -1,4 +1,5 @@
-float min(float x, float y){
+float min(float x, float y)
+{
 	if(x>y)
 		return y;
 	else
@@ -7,12 +8,14 @@ float min(float x, float y){
 }
 
 #include<stdio.h>
-main(){
-float x, y, f;
 
-scanf("%f",&x);
-scanf("%f",&y);
-f = min(x,y);
-printf("%f",f);
-return 0;
+int main()
+{
+	float x, y, f;
+
+	scanf("%f",&x);
+	scanf("%f",&y);
+	f = min(x,y);
+	printf("%f",f);
+	return 0;
 }
