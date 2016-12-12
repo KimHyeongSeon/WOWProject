@@ -9,6 +9,7 @@ int main(void)
 	};
 	
 	struct sungjuk st;
+	
 	int g,e;
 	scanf("%s",&(O,X?)st.f);
 	scanf("%d",&st.a);
