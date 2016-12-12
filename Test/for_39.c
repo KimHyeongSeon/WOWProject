@@ -1,13 +1,12 @@
+#include<stdio.h>
+
 float min(float x, float y)
 {
 	if(x>y)
 		return y;
 	else
 		return x;
-
 }
-
-#include<stdio.h>
 
 int main()
 {
