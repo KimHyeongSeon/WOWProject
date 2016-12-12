@@ -1,6 +1,4 @@
-5번
 
-for문
 #include <stdio.h>
 int main(void){
 int a, b=0, c=0;
